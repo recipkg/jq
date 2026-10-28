@@ -20,4 +20,6 @@
 
 多输出、空输出和错误边界不能按普通单值循环猜测。输入 `[1,2]`，`reduce .[] as $x (0; (.+$x, .+100))` 输出 `200`，而 `foreach .[] as $x (0; (.+$x, .+100))` 依次输出 `1`、`100`、`102`、`200`；`reduce .[] as $x (0; empty)` 输出 `null`。输入 `[1,2]`，`reduce .[] as $x ((0,10); .+$x)` 在本机构建中先输出 `3`，随后退出 5 且 stderr 非空。这些是具体样本，不推断所有多值 INIT/UPDATE 的通用语义。
 
+补充 jq 1.8.2 实测边界：`reduce (1,2) as $x ((0,10); .+$x)` 输出 `3`、`13`；输入 `[1,2]`，`reduce (.[]? // 9) as $x ((0,10); .+$x)` 输出 `3`、`19`，但 `foreach .[] as $x ((0,10); .+$x)` 输出 `1`、`3`、`11`、`13`。对 `[1,2,3]`，`foreach .[] as $x (0; empty)` 无输出；UPDATE 为 `(.,.+$x)` 时，`reduce` 输出 `6`，`foreach` 输出 `0`、`1`、`1`、`3`、`3`、`6`。数组解构 `null` 时缺失位置绑定 `null`，解构数字 `5` 以退出码 5 失败。这些样本不证明所有多值行为。
+
 可执行检查位于 [standard-library-verification](https://github.com/recipkg/standard-library-verification) 的 `JqSamples.test_bindings_functions_and_reductions`，通过 `RECIPKG_TEST_JQ` 指定目标；比较结果类型、顺序、退出码和 stderr。异常传播、更多多值组合、深度、性能及独立重建均未完成验证。
