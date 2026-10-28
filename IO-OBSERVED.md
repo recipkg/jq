@@ -10,8 +10,11 @@
 ## 消费输入、文件及输出
 
 - 输入 `1 2 3`，`jq -cn '[inputs]'` 输出 `[1,2,3]`；没有 `-n` 时 `jq -c '[inputs]'` 输出 `[2,3]`，因为第一项已作为过滤器的输入。`inputs` 消费余下数据，而不是独立复制全部输入。
+- `-n` 只关闭自动取输入，不禁止 `input` 和 `inputs` 显式消费。输入 `1 2 3` 时，`jq -cn '[input,input]'` 输出 `[1,2]`；空输入的 `jq -cn '[input?]'` 输出 `[]`。输入 `1 2 3 4` 时，`jq -c '[.,input]'` 依次输出 `[1,2]` 和 `[3,4]`。与 `-s` 同用时，`jq -n -s '[inputs]'` 将输入视为一个聚合数组，输出 `[[1,2,3]]`。
 - 文件 `a.json` 含 `1\n2\n`，`b.json` 含 `4\n`；`jq -c '.' a.json - b.json` 从 stdin 收到 `3\n` 时依次输出 1、2、3、4。文件不存在时，`jq -c '.' missing.json b.json` 在样本中仍输出后一个文件的 `4`，stderr 报错并退出 2；不要凭这个样本推断所有文件、解析或运行时错误都会继续。
 - `-R -c` 把 `hello\n\nworld` 输出为三个 JSON 字符串，空行仍是空字符串；`-R -s -c` 输出一个包含换行的字符串。`--raw-output0` 对字符串和数字样本以 NUL 而非换行结束各结果，字符串内换行不变；含 NUL 的字符串样本不输出该字符串，stderr 报错并退出 5。
+- 两个文件 `a` 为 `1\n2\n`、`b` 为 `3\n` 时，`-s -c '.' a b` 输出 `[1,2,3]`；`-R -s -c '.' a b` 输出 `"1\\n2\\n3\\n"`。对 `-n --raw-output0 '"one","bad\\u0000text","after"'`，样本先输出字节 `one` 和 NUL，然后报错退出 5，不输出剩余结果。
+- 文件边界不必是值或行边界：`a` 为 `[`、`b` 为 `1]`，`-c '.' a b` 输出 `[1]`；`a` 为 `1`、`b` 为 `2` 时输出 `12`。`-Rc '.'` 对 `a` 为 `abc`、`b` 为 `def\nxyz` 输出 `"abcdef"`、`"xyz"`。这些本机样本以文件内容连续处理；文件读取错误和更多格式边界不能据此一概推断。
 - `-e` 对两个结果 `true`、`false` 返回 1；相反顺序返回 0，stdout 保留两个结果。该选项取最后结果的真值而非任意结果。
 
 所有记录的非错误样本退出 0、stderr 空。可运行对照见 [standard-library-verification](https://github.com/recipkg/standard-library-verification) 的 `tests/test_recipes.py`，通过 `RECIPKG_TEST_JQ` 指定目标。`JSON-PARSING-OBSERVED.md` 补充少量 Unicode、截断与 `--seq` 样本；内存、性能、文件竞争、任意非法输入及独立重建仍未验证。
