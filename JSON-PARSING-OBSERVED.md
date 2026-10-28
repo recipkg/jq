@@ -19,4 +19,6 @@
 
 `--seq` 模式输出每项前加字节 `0x1e`（RS）、后加换行。本机以 `--seq -c '.'` 输入字节 `\x1e1\n\x1e{bad}\n\x1e{"ok":2}\n`，stdout 为 `\x1e1\n\x1e{"ok":2}\n`，stderr 有解析警告、退出 0：损坏记录后在下一 RS 恢复。不能把普通模式的退出码套到该样本；其他损坏位置、无分隔符、截断和 `--stream` 组合未完整验证。
 
+补充 jq 1.8.2 实测：首个 RS 前的 `junk` 被丢弃；无 RS 的 `1\n` 不输出且 stderr 有警告。`\x1e1\n2\n` 输出两项，连续 RS 和末尾空记录不产生值。`\x1e1` 的普通序列模式不输出数字并警告可能截断；流式序列模式输出 `[[],1]`。输入 `\x1e[1,]\n\x1e42\n`：普通模式只输出 `42` 并警告；`--stream` 先输出 `[[0],1]`，警告后继续输出 `[[],42]`；`--stream-errors` 输出相同叶值、带路径 `[1]` 的错误记录和 `[[],42]`，不写 stderr。`-s --seq` 聚合解析值，`-n --seq '[inputs]'` 显式读取；`-R --seq` 的样本按原始行读取，JSON 输出仍带 RS。`-r --seq` 的字符串输出不带 RS，而非字符串输出带 RS。错误信息的精确内容及所有组合仍未验证。
+
 在 [standard-library-verification](https://github.com/recipkg/standard-library-verification) 用 `RECIPKG_TEST_JQ` 指定目标，运行 `JqSamples` 的 `test_json_parsing_boundaries`、`test_decnum_literal_and_arithmetic` 和 `test_json_sequence_error_recovery`。精度测试要求目标报告 `have_decnum == true`，否则明确跳过；跳过不代表已验证。测试依赖二进制输入以保留无效 UTF-8。完整 Unicode、数值精度、任意字节流、流式解析与独立重建仍待验证。
