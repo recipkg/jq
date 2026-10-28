@@ -9,3 +9,4 @@
 5. 对所有声称支持的过滤器、数据类型、函数、错误、精度、模块、文件和平台补充对照与验收。以上几个样本不足以证明完整兼容 jq。
 6. 按 `ASSIGNMENT-OBSERVED.md` 对照 `=` 与 `|=` 的输入、多输出和空输出，以及多路径、逗号优先级、可选操作和捕获错误。对每个样本检查输出序列、stderr 和退出码；以 [standard-library-verification](https://github.com/recipkg/standard-library-verification) 的 `JqSamples` 执行重复对照。
 7. 按 `IO-OBSERVED.md` 测试路径流、无效数据的部分输出与错误模式、`inputs` 消费、多个文件及标准输入、原始输入和 NUL 输出；分别核对 stdout、stderr 和退出码。成功样本不代表完整流式 API 或全部文件错误已验证。
+8. 按 `CONDITIONALS-OBSERVED.md` 测试真假值、条件多输出和空输出、`//` 的结果流与括号优先级、布尔短路、多输出顺序及比较。使用 `JqSamples.test_conditions_alternatives_and_comparisons` 比较 JSON 类型、结果顺序、stderr 和退出码；不将这些样本视为完整语言验收。
