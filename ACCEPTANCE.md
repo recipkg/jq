@@ -11,3 +11,4 @@
 7. 按 `IO-OBSERVED.md` 测试路径流、无效数据的部分输出与错误模式、`inputs` 消费、多个文件及标准输入、原始输入和 NUL 输出；分别核对 stdout、stderr 和退出码。成功样本不代表完整流式 API 或全部文件错误已验证。
 8. 按 `CONDITIONALS-OBSERVED.md` 测试真假值、条件多输出和空输出、`//` 的结果流与括号优先级、布尔短路、多输出顺序及比较。使用 `JqSamples.test_conditions_alternatives_and_comparisons` 比较 JSON 类型、结果顺序、stderr 和退出码；不将这些样本视为完整语言验收。
 9. 按 `JSON-PARSING-OBSERVED.md` 用字节输入验证重复键、宽松数字、Unicode、无效输入、部分输出和 `--seq` 恢复，并在 decnum 构建验证大数字面值、比较及算术。记录目标的 `have_decnum`；未启用时精度样本跳过，不能称为通过。
+10. 按 `PROGRAMMING-OBSERVED.md` 和 `JqSamples.test_bindings_functions_and_reductions` 检查绑定输入、作用域、解构、函数参数、递归和归约的多结果、空结果及错误。该样本集不是完整语言验收。
