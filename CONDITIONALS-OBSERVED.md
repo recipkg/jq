@@ -18,4 +18,6 @@
 
 `==`、`!=` 比较 JSON 值：字符串不自动转为数字；对象键的顺序不影响相等。`[1 == "1",1==1.0,{"a":1,"b":2} == {"b":2,"a":1}]` 得 `[false,true,true]`。`<`、`<=`、`>`、`>=` 使用与 `sort` 相同的排序；手册规定类型顺序为 null、false、true、数字、字符串、数组、对象。字符串按 Unicode 码点，数组按字典序，对象先比较排序后的键集合、再逐键比较值。样本 `[[1,2] < [1,3], {"a":1} < {"b":0}, 1 < "0"]` 得 `[true,true,true]`；`[(1,2) < (2,3)]` 得 `[true,false,true,true]`，结果顺序也应保留。
 
+类型区别也适用于嵌套值：`[1==1.0, [true]==[1], {"a":true}=={"a":1}]` 输出 `[true,false,false]`，不能直接使用会把布尔值视为整数的宿主语言深度相等。`if false then 1 elif true then 2 end` 输出 `2`；`[false and (1,2), true or empty]` 输出 `[false,true]`，两个短路样本均不消费右侧结果。
+
 上述非错误样本均退出 0、stderr 为空；除了第一个条件样本外，样本输入可为 `null` 或文中明确给出的对象。可执行对照在 [standard-library-verification](https://github.com/recipkg/standard-library-verification) 的 `JqSamples.test_conditions_alternatives_and_comparisons`；它还检查空输出和 JSON 类型。复杂表达式优先级、`elif` 边界、全部嵌套对象排序、数字精度、异常传播及其他平台仍未全面验证。
