@@ -8,3 +8,4 @@
 4. `jq -ne true` 退出 0；`jq -ne false` 和 `jq -ne null` 退出 1；`jq -ne empty` 退出 4 且 stdout 为空。以无效 JSON `{invalid}` 输入 `jq -c '.'`，本机 jq 1.8.2 返回 5、错误写 stderr；记录平台和完整诊断。
 5. 对所有声称支持的过滤器、数据类型、函数、错误、精度、模块、文件和平台补充对照与验收。以上几个样本不足以证明完整兼容 jq。
 6. 按 `ASSIGNMENT-OBSERVED.md` 对照 `=` 与 `|=` 的输入、多输出和空输出，以及多路径、逗号优先级、可选操作和捕获错误。对每个样本检查输出序列、stderr 和退出码；以 [standard-library-verification](https://github.com/recipkg/standard-library-verification) 的 `JqSamples` 执行重复对照。
+7. 按 `IO-OBSERVED.md` 测试路径流、无效数据的部分输出与错误模式、`inputs` 消费、多个文件及标准输入、原始输入和 NUL 输出；分别核对 stdout、stderr 和退出码。成功样本不代表完整流式 API 或全部文件错误已验证。
