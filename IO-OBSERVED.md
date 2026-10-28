@@ -14,4 +14,4 @@
 - `-R -c` 把 `hello\n\nworld` 输出为三个 JSON 字符串，空行仍是空字符串；`-R -s -c` 输出一个包含换行的字符串。`--raw-output0` 对字符串和数字样本以 NUL 而非换行结束各结果，字符串内换行不变；含 NUL 的字符串样本不输出该字符串，stderr 报错并退出 5。
 - `-e` 对两个结果 `true`、`false` 返回 1；相反顺序返回 0，stdout 保留两个结果。该选项取最后结果的真值而非任意结果。
 
-所有记录的非错误样本退出 0、stderr 空。可运行对照见 [standard-library-verification](https://github.com/recipkg/standard-library-verification) 的 `tests/test_recipes.py`，通过 `RECIPKG_TEST_JQ` 指定目标。未验证内存、性能、Unicode 边界、文件竞争、被截断的结果、任意非法输入、`--seq` 或独立重建。
+所有记录的非错误样本退出 0、stderr 空。可运行对照见 [standard-library-verification](https://github.com/recipkg/standard-library-verification) 的 `tests/test_recipes.py`，通过 `RECIPKG_TEST_JQ` 指定目标。`JSON-PARSING-OBSERVED.md` 补充少量 Unicode、截断与 `--seq` 样本；内存、性能、文件竞争、任意非法输入及独立重建仍未验证。
