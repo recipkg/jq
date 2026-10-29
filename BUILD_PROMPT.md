@@ -44,6 +44,8 @@
 
 按 `CONVERSION-OBSERVED.md` 实现已测试范围内的 `type`、`tostring`、`tojson` 和 `fromjson`。`type` 应返回六类 JSON 值的 jq 类型名；`tostring` 保持字符串不变、其他值编码为紧凑 JSON；`tojson` 将所有值（包括字符串）编码为紧凑 JSON 文本。`fromjson` 只接受字符串，并对恰好一个 JSON 值产生结果；空文本、无效文本或多个 JSON 文本必须报错。完整解析、数值精度、重复键策略和诊断信息仍待提取，不得将这些样本扩展成全解析器兼容声明。
 
+按 `TYPE-FILTERS-OBSERVED.md` 实现 `arrays`、`objects`、`iterables`、`booleans`、`numbers`、`strings`、`nulls`、`values` 与 `scalars`。它们不带参数，只在当前值符合类型条件时原样输出；不匹配时不输出。`values` 保留 false 但丢弃 null；`scalars` 保留 null、布尔、数字和字符串，排除数组与对象；`iterables` 只保留数组和对象。不得把它们实现成容器迭代器。其他类型组合与完整 jq 内建函数集仍待提取。
+
 ## 容器包含与数组反转
 
 按 `CONTAINMENT-OBSERVED.md` 实现 `contains`、`inside` 和数组 `reverse` 的有限行为。字符串按子串包含；数组中的每个目标元素需在容器某一元素中递归匹配；对象按键和值递归包含。标量和不同类型的错误/假值处理需遵从验收样本，尤其不要把顶层类型错配与容器内部元素错配合并处理。`reverse` 仅声明支持数组。复杂混合类型、完整递归边界和性能仍待提取。

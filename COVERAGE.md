@@ -211,3 +211,9 @@
 
 - 按固定 jq 1.8 手册和上游 `src/builtin.jq` 增加有限 `sub` / `gsub` 及替换字符串插值合同，覆盖首个/全局行为、命名捕获上下文、替换输出流位置合并、flags、空匹配、错误和固定种子差分；详见 [SUB-GSUB-OBSERVED.md](SUB-GSUB-OBSERVED.md)。
 - 新增 `test_jq_regex_replace.py` 的 8 个聚焦方法通过。完整回归及 jq@0.1.56 最终验收门槛为固定源码/配方提交后的完整回归、双语 build/discover、递归依赖闭包、确定性打包与源文件未改写。
+
+## 类型筛选器迭代：2026-10-30
+
+- 加入 `arrays`、`objects`、`iterables`、`booleans`、`numbers`、`strings`、`nulls`、`values` 与 `scalars` 的有限合同和独立实现。`values` 对 false/null 的区别、零输出和容器不被迭代均有显式验收。
+- 候选实现为 [jq-source `0d1fe67`](https://github.com/recipkg/jq-source/tree/0d1fe67)；黑盒验收为 [standard-library-verification `459b24b`](https://github.com/recipkg/standard-library-verification/tree/459b24b)。4 项新测试通过，含 100 个固定种子嵌套 JSON 值对照本机 `/usr/bin/jq`；该二进制报告 jq 1.8.2，构建来源未核实。全量 `test_jq_*.py` 回归通过 159 项（418.786 秒）。
+- 配方提升至 `jq@0.1.58`。`recipkg check`、两次归档字节一致、49 个 Markdown payload、英中 `build` 与 `discover`、递归 `software-quality` 上下文均通过。本轮只完成有限的筛选器范围，jq 整体仍在提取中；非 JSON 特殊值和完整内建函数兼容性未验证。
