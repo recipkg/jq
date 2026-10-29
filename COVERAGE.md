@@ -99,3 +99,11 @@
 - 增加 `pick(path_expressions)` 的稀疏投影合同：[`PICK-OBSERVED.md`](PICK-OBSERVED.md)。对象缺失字段与数组空位填 null；验收包含嵌套、重复/重叠路径、迭代器、空迭代和根路径。
 - 独立重建提交：[jq-source `206c30f08bb926ffe606e4221f2f1c0d21fc5893`](https://github.com/recipkg/jq-source/tree/206c30f08bb926ffe606e4221f2f1c0d21fc5893)；黑盒验证提交：[standard-library-verification `41af720`](https://github.com/recipkg/standard-library-verification/tree/41af7208bd1460ebcb7eaa00d9aee7c1a58cf55b)。93 项定向测试全量通过；本轮 4 项 `pick` 测试通过，含 100 组固定种子嵌套值差分。
 - 参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。负数组索引、切片、复杂路径、完整错误行为、资源边界、平台和整体兼容性仍未确认。
+
+
+## 本轮更新：多路径读取（配方 v0.1.41）
+
+- 补充 `getpath(PATHS)` 接受逗号生成的多个路径并按顺序输出结果的有限合同：[`GETPATH-OBSERVED.md`](GETPATH-OBSERVED.md)。
+- 独立重建代码未变（基线提交 `206c30f`）；重建仓库文档更新提交为 [`130d0cd`](https://github.com/recipkg/jq-source/tree/130d0cd4aa5f2bf50567939549abb4be44e32fa1)，验证提交为 [`0072dfc`](https://github.com/recipkg/standard-library-verification/tree/0072dfc5526b4831e4dc15382b23d44bcbdb1710)。本轮只补充已有行为的验证和配方记录。
+- 主 jq 合同 19 项、定向 jq 测试 94 项全量通过；本轮 4 项 `getpath` 测试通过，含 100 组固定种子对象/数组路径差分。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。
+- 逗号生成路径之外的所有生成器组合、精确错误时序、极端索引、资源边界、平台和完整 jq 兼容性仍未确认。

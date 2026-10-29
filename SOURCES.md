@@ -43,3 +43,6 @@
 
 - `pick(path_expressions)` 的稀疏对象/数组投影和缺失字段行为依据固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)并以本机样本核对；见 [`PICK-OBSERVED.md`](PICK-OBSERVED.md) 与验收用例 31。
 - 独立重建提交：[jq-source `206c30f08bb926ffe606e4221f2f1c0d21fc5893`](https://github.com/recipkg/jq-source/tree/206c30f08bb926ffe606e4221f2f1c0d21fc5893)，验证提交：[standard-library-verification `41af720`](https://github.com/recipkg/standard-library-verification/tree/41af7208bd1460ebcb7eaa00d9aee7c1a58cf55b)。93 项定向测试全量通过；本轮 4 项 `pick` 测试含 100 组固定种子嵌套值差分。参考端报告 jq 1.8.2，构建来源未核实。
+
+- `getpath(PATHS)` 多路径输出示例依据固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)第 661–672 行；逗号生成器的行为已在参考 jq 和独立重建程序中核对。见 [`GETPATH-OBSERVED.md`](GETPATH-OBSERVED.md) 与验收用例 32。
+- 独立重建代码基线仍为 [`jq-source 206c30f`](https://github.com/recipkg/jq-source/tree/206c30f08bb926ffe606e4221f2f1c0d21fc5893)；验证提交 [`standard-library-verification 0072dfc`](https://github.com/recipkg/standard-library-verification/tree/0072dfc5526b4831e4dc15382b23d44bcbdb1710) 新增多路径生成器黑盒用例。文档状态更新提交 [`jq-source 130d0cd`](https://github.com/recipkg/jq-source/tree/130d0cd4aa5f2bf50567939549abb4be44e32fa1)。94 项定向测试全量通过。
