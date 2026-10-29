@@ -1,6 +1,6 @@
 # jq · Recipkg
 
-**命令行 JSON 查询与转换：提炼过滤表达式、流式输入、赋值和错误行为。**
+**命令行 JSON 查询与转换：提炼过滤表达式、模块加载、流式输入、赋值和错误行为。**
 
 [标准库](https://github.com/recipkg/standard-library) · [配方清单](RECIPE.md) · [构建要求](BUILD_PROMPT.md) · [验收条件](ACCEPTANCE.md) · [来源](SOURCES.md) · [来源与覆盖](COVERAGE.md) · [模块约定](MODULES-DOCUMENTED.md) · [重建工作区](https://github.com/recipkg/jq-workspace)
 

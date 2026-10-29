@@ -17,3 +17,5 @@
 11. 按 `COLLECTIONS-OBSERVED.md` 对照 `map`、`map_values` 的多结果、空结果、数组与对象、错误及惰性；对照 `keys` 和 `keys_unsorted` 的对象及数组，以及 `has`、`in` 的多结果、空值、数组小数/负下标、类型错误与错误前输出。明确记录上游构建及实际比较范围。
 
 12. 按 `AGGREGATION-OBSERVED.md` 核对多值与空键、键相同的元素顺序、排序/分组/去重、最大最小值、`add` 的空输入、不同类型和生成器、错误和不可迭代输入；记录固定上游和重建程序的实际输出。
+
+13. 按 `MODULES-DOCUMENTED.md` 检查模块第一阶段：用 `-L` 从临时搜索目录加载 `include "math/step"`，分别覆盖 `math/step.jq` 与仅存在 `math/step/step.jq` 的布局；验证模块定义可调用、模块可递归 include、多个 `-L` 按记录的优先级搜索，并验证缺失模块以编译错误退出。暂不把 `import`、JSON 模块、默认搜索路径、`module` 元数据或 `modulemeta` 记作通过。使用 `standard-library-verification/tests/test_jq_modules.py`，与本机 jq 1.8.2 对照时记录二进制构建来源限制。
