@@ -42,3 +42,6 @@
 
 
 26. 按 `SETPATH-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_setpath.py` 验收 null 下自动创建对象/数组、路径写入、数组扩展补 null、负下标、根替换和非法路径/容器组合；以本机 `/usr/bin/jq`（报告 1.8.2，构建来源未核实）对照 100 组固定种子更新。极端索引/资源边界、多结果顺序和完整错误兼容仍未验证。
+
+
+27. 按 `PATHS-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_paths.py` 验收 `path(expr)` 的字段、数组索引/迭代及缺失字段路径，`paths` 对嵌套对象/数组的遍历顺序，以及 `paths(f)` 对数字值的筛选；比较 100 个固定种子 JSON 值。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；复杂路径语法和资源边界不在本项合同内。

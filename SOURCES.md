@@ -24,7 +24,10 @@
 - 独立重建：[jq-source `b09164de264e451a008830a3047a0e18b321d14b`](https://github.com/recipkg/jq-source/tree/b09164de264e451a008830a3047a0e18b321d14b)，验证样本：[standard-library-verification `a89ce265f0f6e244f24971c39e4e7e8d78fef66d`](https://github.com/recipkg/standard-library-verification/tree/a89ce265f0f6e244f24971c39e4e7e8d78fef66d)。本轮 4 项转置测试和此前累计的 19 项主合同、67 项定向测试通过；参考构建来源未核实。
 
 - `getpath` 的路径读取按固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)提取，并用本机 jq 对照有限边界；详情见 [`GETPATH-OBSERVED.md`](GETPATH-OBSERVED.md) 与验收用例 25。
-- 当前独立重建提交：[jq-source `01e0edfac91a7e54ae6b275f527bd79d43486de2`](https://github.com/recipkg/jq-source/tree/01e0edfac91a7e54ae6b275f527bd79d43486de2)，验证提交：[standard-library-verification `eb60085ce514153cf370ddba184b654a9355b576`](https://github.com/recipkg/standard-library-verification/tree/eb60085ce514153cf370ddba184b654a9355b576)。19 项主 jq 合同及 73 项定向测试通过；上游参考二进制构建来源未核实。
+- 当前独立重建提交：[jq-source `5ae62c6900f957c84e2eed247a8d5159a372f341`](https://github.com/recipkg/jq-source/tree/5ae62c6900f957c84e2eed247a8d5159a372f341)，验证提交：[standard-library-verification `a5d615a80245be0899bf2eb5a3be474d53681d14`](https://github.com/recipkg/standard-library-verification/tree/a5d615a80245be0899bf2eb5a3be474d53681d14)。19 项主 jq 合同及 76 项定向测试通过；上游参考二进制构建来源未核实。
 
 - `setpath` 的自动建容器、数组填充和负下标参照固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)并由本机样本核对；边界见 [`SETPATH-OBSERVED.md`](SETPATH-OBSERVED.md) 和验收用例 26。
 - 本轮独立重建提交：[jq-source `01e0edfac91a7e54ae6b275f527bd79d43486de2`](https://github.com/recipkg/jq-source/tree/01e0edfac91a7e54ae6b275f527bd79d43486de2)，验证提交：[standard-library-verification `eb60085ce514153cf370ddba184b654a9355b576`](https://github.com/recipkg/standard-library-verification/tree/eb60085ce514153cf370ddba184b654a9355b576)。19 项主合同与 73 项定向样本通过，参考二进制构建来源未核实。
+
+- `path(expr)`、`paths` 及条件路径筛选参考固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)；有限语法和样本边界见 [`PATHS-OBSERVED.md`](PATHS-OBSERVED.md) 与验收用例 27。
+- 当前独立重建提交：[jq-source `5ae62c6900f957c84e2eed247a8d5159a372f341`](https://github.com/recipkg/jq-source/tree/5ae62c6900f957c84e2eed247a8d5159a372f341)，验证提交：[standard-library-verification `a5d615a80245be0899bf2eb5a3be474d53681d14`](https://github.com/recipkg/standard-library-verification/tree/a5d615a80245be0899bf2eb5a3be474d53681d14)。主合同 19 项、定向 76 项测试通过；参考构建来源未核实。
