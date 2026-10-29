@@ -21,4 +21,7 @@
 - 本轮独立重建位于 [jq-source `25c42f93510d8272ce44a1efa067e7c4e98e58c4`](https://github.com/recipkg/jq-source/tree/25c42f93510d8272ce44a1efa067e7c4e98e58c4)，验证样本位于 [standard-library-verification `eeb7e48`](https://github.com/recipkg/standard-library-verification/tree/eeb7e48ff35c6706f063bb6130558f5cddf9b9d6)。19 项主 jq 合同与 63 项定向样本通过；参考二进制构建来源未核实。
 
 - `transpose` 的补 null、空行及 null 行行为参照固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)并以本机样本确认；见 [`TRANSPOSE-OBSERVED.md`](TRANSPOSE-OBSERVED.md) 与验收用例 24。
-- 独立重建：[jq-source `af4933be75d99583f659bccd4bb1faf01a506627`](https://github.com/recipkg/jq-source/tree/af4933be75d99583f659bccd4bb1faf01a506627)，验证样本：[standard-library-verification `a89ce265f0f6e244f24971c39e4e7e8d78fef66d`](https://github.com/recipkg/standard-library-verification/tree/a89ce265f0f6e244f24971c39e4e7e8d78fef66d)。本轮 4 项转置测试和此前累计的 19 项主合同、67 项定向测试通过；参考构建来源未核实。
+- 独立重建：[jq-source `b09164de264e451a008830a3047a0e18b321d14b`](https://github.com/recipkg/jq-source/tree/b09164de264e451a008830a3047a0e18b321d14b)，验证样本：[standard-library-verification `a89ce265f0f6e244f24971c39e4e7e8d78fef66d`](https://github.com/recipkg/standard-library-verification/tree/a89ce265f0f6e244f24971c39e4e7e8d78fef66d)。本轮 4 项转置测试和此前累计的 19 项主合同、67 项定向测试通过；参考构建来源未核实。
+
+- `getpath` 的路径读取按固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)提取，并用本机 jq 对照有限边界；详情见 [`GETPATH-OBSERVED.md`](GETPATH-OBSERVED.md) 与验收用例 25。
+- 当前独立重建提交：[jq-source `b09164de264e451a008830a3047a0e18b321d14b`](https://github.com/recipkg/jq-source/tree/b09164de264e451a008830a3047a0e18b321d14b)，验证提交：[standard-library-verification `4af5dddef15951876fc71d92d17cd985d30ccad5`](https://github.com/recipkg/standard-library-verification/tree/4af5dddef15951876fc71d92d17cd985d30ccad5)。19 项主 jq 合同及 70 项定向测试通过；上游参考二进制构建来源未核实。

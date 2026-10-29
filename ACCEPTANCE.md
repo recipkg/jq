@@ -36,3 +36,6 @@
 
 
 24. 按 `TRANSPOSE-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_transpose.py` 验收矩形、锯齿状、空行和 null 行；短行补 null，空矩阵输出空数组，非数组顶层及非数组非 null 行失败。参考端为本机 `/usr/bin/jq`（报告 1.8.2，构建来源未核实），差分覆盖 100 组固定种子矩阵；不据此宣称完整类型、错误或资源兼容。
+
+
+25. 按 `GETPATH-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_getpath.py` 验收嵌套对象/数组路径、缺失键、越界与负数组下标、小数索引截断、null 中断以及非法路径/组件；配置本机 `/usr/bin/jq` 参考端对照 100 组固定种子路径。参考端报告 jq 1.8.2，构建来源未核实。该用例只覆盖有限读取路径，不代表写入路径或全部错误时序。

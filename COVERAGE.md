@@ -47,3 +47,11 @@
 - 独立重建提交：[jq-source `af4933be75d99583f659bccd4bb1faf01a506627`](https://github.com/recipkg/jq-source/tree/af4933be75d99583f659bccd4bb1faf01a506627)；验证提交：[standard-library-verification `a89ce265f0f6e244f24971c39e4e7e8d78fef66d`](https://github.com/recipkg/standard-library-verification/tree/a89ce265f0f6e244f24971c39e4e7e8d78fef66d)。
 - 主 jq 合同 19 项、定向 jq 测试 67 项通过；本轮 4 项转置测试通过，差分覆盖 100 组固定种子矩阵。参考端 `/usr/bin/jq` 报告 1.8.2，但构建来源未核实。
 - 极端矩阵、精确错误行为、其他平台和完整 jq 兼容性仍未确认；不能据此标记配方或重建已完成。
+
+
+## 本轮更新：路径读取（配方 v0.1.34）
+
+- 补充有限 `getpath` 读取合同：[`GETPATH-OBSERVED.md`](GETPATH-OBSERVED.md)。
+- 独立重建提交：[jq-source `b09164de264e451a008830a3047a0e18b321d14b`](https://github.com/recipkg/jq-source/tree/b09164de264e451a008830a3047a0e18b321d14b)；验证提交：[standard-library-verification `4af5dddef15951876fc71d92d17cd985d30ccad5`](https://github.com/recipkg/standard-library-verification/tree/4af5dddef15951876fc71d92d17cd985d30ccad5)。
+- 主 jq 合同 19 项、定向 jq 测试 70 项通过；本轮 3 项路径测试通过，包含 100 组固定种子路径差分。参考端 `/usr/bin/jq` 报告 1.8.2，但构建来源未核实。
+- 这只覆盖路径读取。路径生成和写入、完整错误时序、其他平台与完整 jq 兼容性仍未确认。
