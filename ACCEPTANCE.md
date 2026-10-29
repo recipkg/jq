@@ -63,3 +63,5 @@
 35. 按 `RECURSE-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_recurse.py` 验收 `recurse`、`recurse(f)` 和 `recurse(f; condition)` 的根值优先、深度优先次序、显式子值迭代与条件停止位置；使用本机参考端对照 100 个固定种子 JSON 值的默认递归输出。参考端报告 jq 1.8.2，构建来源未核实；无限流、深度/内存上限、精确错误与平台行为仍未验证。
 36. 按 `LIMIT-SKIP-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_limit_skip.py` 验收 `limit(n; expr)` 和 `skip(n; expr)` 的流顺序、零值、小数实测边界、多计数值、无效计数、空计数流与无限递归截取；对照本机报告 jq 1.8.2 的参考端，并比较 100 组固定种子数组/计数。参考二进制构建来源未核实；精确诊断、错误时序、极端数值、资源边界与平台仍未验证。
 37. 按 `WHILE-UNTIL-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_while_until.py` 验收 `while(cond; update)` 与 `until(cond; next)` 的条件停止位置、当前值输出、多结果更新分支和顺序；比较有限单结果/多结果样本及 100 组固定种子正步长输入。参考端报告 jq 1.8.2，构建来源未核实；无限循环、递归资源、错误时序及完整兼容性仍未验证。
+
+38. 按 `ROUNDING-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_rounding.py` 验收有限数值上的 `ceil`、`floor`、`round` 和 `trunc`，覆盖正负小数、正负半值、负零、非数字报错，以及 100 组固定种子小数差分。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；非有限值、极端精度、平台差异与完整数学函数兼容性仍未验证。

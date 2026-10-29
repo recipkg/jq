@@ -150,3 +150,11 @@
 - 在隔离的 Recipkg 存储中同时安装并构建 `jq@0.1.44`、`jq@0.1.45`、`jq@0.1.46`；三版各自保留递归 `software-quality` 上下文，生成提示词中的循环/流组合器与版本边界相符。
 - 上游 jq 手册提到单结果更新可使用尾调用优化；不将此上游属性当作当前重建程序的资源保证。
 - 无限循环保护、尾调用优化、递归/内存上限、极端深度、错误时序与平台差异仍未验证。
+
+## Numeric rounding iteration: 2026-10-30
+
+- Input: the `jq` recipe draft v0.1.46, fixed to upstream jq 1.8.2. The versioned manual lists `ceil`, `floor`, `round`, and `trunc` among its single-input math filters.
+- Implemented finite numeric samples for all four filters: floor toward negative infinity, ceil toward positive infinity, truncation toward zero, and half-away-from-zero `round`; negative zero is retained in observed cases. Non-number inputs fail explicitly.
+- All 3 new black-box methods passed, including 100 fixed-seed finite decimal values per filter. The complete targeted `test_jq_*.py` regression passed: 113 tests in 74.990 seconds. Reference `/usr/bin/jq` reports 1.8.2; its build provenance is unverified.
+- Reconstruction commit: [`jq-source 383578d`](https://github.com/recipkg/jq-source/tree/383578dd5e603ea1352efe390cf4de992224b5f5); black-box verification commit: [`standard-library-verification d315210`](https://github.com/recipkg/standard-library-verification/tree/d3152106a13a6803f68ac417bfcbc024a3a144cd).
+- Non-finite values, extreme numeric precision, platform math-library variation, exact diagnostics and complete jq compatibility remain unverified.
