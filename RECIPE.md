@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.58"
+version = "0.1.59"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -27,6 +27,8 @@ subdir = "recipes/software-quality"
 类型检查和 JSON 文本转换的有限样本见 [`CONVERSION-OBSERVED.md`](CONVERSION-OBSERVED.md)。完整 JSON 解析语义仍未覆盖。
 
 类型筛选器 `arrays`、`objects`、`iterables`、`booleans`、`numbers`、`strings`、`nulls`、`values` 与 `scalars` 的有限合同见 [`TYPE-FILTERS-OBSERVED.md`](TYPE-FILTERS-OBSERVED.md)。这些无参数过滤器保留匹配的原值；不匹配时产生零个结果。它们不遍历容器。完整内建函数集合及精确错误诊断仍未覆盖。
+
+数值筛选器 `finites` 与 `normals` 的有限合同见 [`NUMBER-FILTERS-OBSERVED.md`](NUMBER-FILTERS-OBSERVED.md)。`finites` 按固定上游定义保留数字且 `isinfinite` 为 false 的值，实测也保留 NaN；`normals` 只保留正规非零浮点数。类型和数值边界仍仅覆盖观察记录中的样本。
 
 容器包含、`inside` 和数组 `reverse` 的有限合同见 [`CONTAINMENT-OBSERVED.md`](CONTAINMENT-OBSERVED.md)；递归边界与类型错误仍有未验证部分。
 

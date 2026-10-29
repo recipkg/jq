@@ -85,3 +85,5 @@
 46. 按 `SUB-GSUB-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_regex_replace.py` 验收有限 `sub(regex; replacement[; flags])` 与 `gsub(regex; replacement[; flags])`：覆盖首个/全局替换、命名捕获及未匹配组、嵌套字符串插值、替换结果流按位置合并、空流/null、flags 与参数生成器顺序、Unicode 和零宽匹配、错误，以及固定种子差分。8 个聚焦方法与 regex/capture/scan/split 的 15 个回归方法已通过。完整验收须先由 `jq-workspace` 提交固定源码和配方 gitlink，再运行全部 `test_jq_*.py`；随后检查 .57 归档、双次打包一致性、英中 build/discover、递归 quality 依赖上下文与源文件未改写。参考 `/usr/bin/jq` 报告 1.8.2，构建来源未核实；其他平台和完整 jq 兼容性未验证。
 
 47. 按 `TYPE-FILTERS-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_type_filters.py` 验收 9 个无参数类型筛选器。使用混合 JSON 类型样本检查每个过滤器保留的原值、零结果行为、`values` 对 false/null 的区别，以及 `scalars`、`iterables` 的边界；再对 100 个固定种子嵌套 JSON 值逐项与本机参考 jq 比较。参考端报告 jq 1.8.2，构建来源未核实；非 JSON 值、数值特殊值和完整内建函数兼容性不在本项范围。
+
+48. 按 `NUMBER-FILTERS-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_finite_filters.py` 验收 `finites` 和 `normals`：覆盖混合 JSON 类型、零、最小正规数、次正规数、溢出数、NaN、正/负无穷、非有限值的 `type` 和参数错误；另对 100 个固定种子有限数值与本机参考 jq 差分。参考端报告 jq 1.8.2，构建来源未核实；用输入 token `NaN`、`Infinity` 和 `-Infinity` 覆盖特殊值，不依赖该构建未提供的 `exp`/`sqrt` 过滤器。其他平台、decnum 构建与极端数值边界不在本项范围。

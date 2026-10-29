@@ -10,7 +10,7 @@
 - `-n` 不自动消费输入，以 null 运行一次，但过滤器中的 `input` 或 `inputs` 仍可显式读取标准输入或文件；`-s` 将全部 JSON 输入聚合为数组运行一次；`-R` 按行作为原始字符串输入，与 `-s` 组合时整个输入成为一个字符串。`-c` 紧凑输出；`-r` 对字符串结果直接输出原始文本、其余结果仍按 JSON 输出。`--arg name value` 绑定字符串，`--argjson name JSON-text` 绑定解析后的 JSON 值。按照使用者的 shell 引用过滤器，不把 shell 的变量展开当 jq 行为。
 - `-e` 根据最后输出值设置退出码：非 false/null 为 0，false/null 为 1，无有效结果为 4。普通用法/系统错误和编译错误文档列出 2、3；不同运行时错误按指定版本实际测试，不能将所有失败统一为某个码。诊断写 stderr；JSON、Unicode、精度、流式输入、格式与错误细节均需进一步测试。
 - 按 `IO-OBSERVED.md` 的范围处理多个输入文件、标准输入、`inputs`、原始输入、NUL 分隔输出、流式路径记录及错误。已经输出的有效结果不得因后续错误而悄悄消失；区分缺失文件、解析失败和 `--stream-errors` 产生的错误记录。样本外的 I/O 和错误语义仍待补齐。
-- 按 `JSON-PARSING-OBSERVED.md` 处理已观察的重复键、数字和字符串边界、先输出再报错及 `--seq` 恢复；区分 decnum 构建与其他构建，不将一般严格 JSON 解析器当作已验证的兼容实现。完整解析语义尚缺。
+- 按 `JSON-PARSING-OBSERVED.md` 处理已观察的重复键、数字和字符串边界、先输出再报错及 `--seq` 恢复；区分 decnum 构建与其他构建，不将一般严格 JSON 解析器当作已验证的兼容实现。对观察到的非标准输入 `NaN`、`Infinity` 与 `-Infinity`，保留运行时 `number` 类型，同时按记录序列化；不能只用 JSON 输出形式推断内部类型。完整解析语义尚缺。
 
 ## 路径赋值与错误处理
 
@@ -107,5 +107,7 @@
 按 `WHILE-UNTIL-OBSERVED.md` 实现有限 `while(cond; update)` 与 `until(cond; next)`：`while` 在条件为真时先输出当前值，再递归处理更新结果；`until` 在条件为真时输出当前值，否则递归处理 next 的各个结果。遵循条件真假、多结果分支及顺序样本。仅声明有限测试覆盖的行为；不要宣称无限循环安全、尾调用优化、内存/深度上限或完整错误兼容。
 
 ## 数值函数
+
+按 `NUMBER-FILTERS-OBSERVED.md` 实现无参数 `finites` 与 `normals`。`finites` 保留数字且 `isinfinite` 为 false 的输入，包括观察到的 NaN；`normals` 只保留 `isnormal` 的非零正规数，并排除次正规数、NaN、无穷与非数字。筛选器只原样输出匹配值，其他输入产生零个结果。遵循记录的双精度边界样本，不将有限样本扩展为所有平台和数值构建上的数学兼容声明。
 
 按 `ROUNDING-OBSERVED.md` 实现 `ceil`、`floor`、`round`、`trunc`；按 `MATH-OBSERVED.md` 实现已记录的数学函数。单输入过滤器包括 `acos`、`acosh`、`asin`、`asinh`、`atan`、`atanh`、`cbrt`、`cos`、`cosh`、`erf`、`erfc`、`exp`、`exp10`、`exp2`、`expm1`、`fabs`、`gamma`、`j0`、`j1`、`lgamma`、`log`、`log10`、`log1p`、`log2`、`logb`、`nearbyint`、`rint`、`significand`、`sin`、`sinh`、`sqrt`、`tan`、`tanh`、`tgamma`、`y0`、`y1`、`frexp`、`modf`；`frexp` 和 `modf` 返回 `[函数返回值, C 输出参数]`。双参数过滤器包括 `atan2`、`copysign`、`drem`、`fdim`、`fmax`、`fmin`、`fmod`、`hypot`、`jn`、`ldexp`、`nextafter`、`nexttoward`、`pow`、`remainder`、`scalb`、`scalbln`、`yn`；三参数函数为 `fma`。使用 Python 标准库 `ctypes` 调用可用的宿主 C 数学库，并按 C 签名转换整数参数；缺失的 C 符号应报函数不可用错误。函数参数流按 jq 的生成顺序组合。输入须为数字，遵循记录的负零、定义域错误、奇点、溢出和样本输出。`gamma`、`lgamma` 的目标行为和底层系统数学库有关；四个 Bessel 函数调用宿主 C 数学库；缺少对应符号时显式报不可用。有限样本之外不要推断精确诊断、极端精度或跨平台一致性。
