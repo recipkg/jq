@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.30"
+version = "0.1.31"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -35,3 +35,6 @@ UTF-8 字节计数与 `explode`/`implode` 转换的有限 Unicode 样本见 [`UN
 输出流的 `first`、`last`、`nth` 与 `isempty` 有限样本见 [`GENERATOR-OBSERVED.md`](GENERATOR-OBSERVED.md)；复杂生成器和错误时序仍需扩展。
 
 `any`、`all` 对可迭代值、条件和显式生成器的有限样本见 [`PREDICATES-OBSERVED.md`](PREDICATES-OBSERVED.md)；条件多输出与完整错误时序尚未提取。
+
+
+`range` 的有限样本见 [`RANGE-OBSERVED.md`](RANGE-OBSERVED.md)：覆盖单参数、双参数和三参数形式、正负步长、小数边界、空范围和零步长。生成器参数的多值组合及数值极端仍未完整提取。

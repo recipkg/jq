@@ -13,3 +13,6 @@
 - `first`、`last`、`nth`、`isempty` 参考固定提交的 [jq 1.8 手册生成器过滤器](https://jqlang.org/manual/v1.8/)；数组索引、输出流、空结果和负下标样本见 [GENERATOR-OBSERVED.md](GENERATOR-OBSERVED.md) 及验收用例 20。
 - `any`、`all` 参考固定提交的 [jq 1.8 手册逻辑聚合过滤器](https://jqlang.org/manual/v1.8/)；空值身份、对象值、条件及显式生成器样本见 [PREDICATES-OBSERVED.md](PREDICATES-OBSERVED.md) 及验收用例 21。
 - 当前材料主要覆盖文档中的 CLI 与过滤器，并以本机二进制验证了少量样本；尚未完整审阅固定源码、全部测试、平台构建或公共 C API。各项证据与边界见 [COVERAGE.md](COVERAGE.md)。
+
+- `range` 的参数形式、边界与步长方向依据固定版本的 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)；升降序、小数和零步长样本以及未验证项见 [`RANGE-OBSERVED.md`](RANGE-OBSERVED.md) 与验收用例 22。
+- 独立重建本轮更新至 [jq-source `39fa30b`](https://github.com/recipkg/jq-source/tree/39fa30b)；实现 `range` 的有限数值序列。源码状态记录了 19 项主验收与 59 项定向样本均通过，参考二进制构建来源仍未核实。
