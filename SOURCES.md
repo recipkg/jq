@@ -10,4 +10,5 @@
 - `indices`、`index`、`rindex` 参考固定提交的 jq 1.8 手册位置过滤器；重叠、Unicode 码点、数组连续子项和 null/object 边界见 [INDEX-OBSERVED.md](INDEX-OBSERVED.md) 及验收用例 17。
 - `length` 与 `flatten` 参考固定提交的 [jq 1.8 手册长度和扁平化过滤器](https://jqlang.org/manual/v1.8/)；类型、深度和对象值边界见 [ARRAY-VALUES-OBSERVED.md](ARRAY-VALUES-OBSERVED.md) 及验收用例 18。小数深度只记录为当前实现限制，不宣称兼容。
 - `utf8bytelength`、`explode`、`implode` 参考固定提交的 [jq 1.8 手册 Unicode 转换过滤器](https://jqlang.org/manual/v1.8/)；码点、字节长度和数值替换样本见 [UNICODE-OBSERVED.md](UNICODE-OBSERVED.md) 及验收用例 19。
+- `first`、`last`、`nth`、`isempty` 参考固定提交的 [jq 1.8 手册生成器过滤器](https://jqlang.org/manual/v1.8/)；数组索引、输出流、空结果和负下标样本见 [GENERATOR-OBSERVED.md](GENERATOR-OBSERVED.md) 及验收用例 20。
 - 当前材料主要覆盖文档中的 CLI 与过滤器，并以本机二进制验证了少量样本；尚未完整审阅固定源码、全部测试、平台构建或公共 C API。各项证据与边界见 [COVERAGE.md](COVERAGE.md)。

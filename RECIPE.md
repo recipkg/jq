@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.28"
+version = "0.1.29"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -31,3 +31,5 @@ subdir = "recipes/software-quality"
 `length` 与 `flatten` 的有限样本见 [`ARRAY-VALUES-OBSERVED.md`](ARRAY-VALUES-OBSERVED.md)；完整深度参数和类型边界仍有缺口。
 
 UTF-8 字节计数与 `explode`/`implode` 转换的有限 Unicode 样本见 [`UNICODE-OBSERVED.md`](UNICODE-OBSERVED.md)；其他错误和极端码点仍待提取。
+
+输出流的 `first`、`last`、`nth` 与 `isempty` 有限样本见 [`GENERATOR-OBSERVED.md`](GENERATOR-OBSERVED.md)；复杂生成器和错误时序仍需扩展。

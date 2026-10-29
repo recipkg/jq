@@ -54,6 +54,8 @@
 
 按 `UNICODE-OBSERVED.md` 实现字符串 `utf8bytelength`、`explode` 和数组 `implode`。长度按 UTF-8 字节，`explode` 输出 Unicode 码点，`implode` 对数值码点截断小数并对越界或代理项替换为 U+FFFD。对非字符串、非数组及非数字元素明确报错。更极端的数值格式、异常 Unicode 与诊断文本尚未覆盖。
 
+按 `GENERATOR-OBSERVED.md` 实现数组取值形式的 `first`、`last`、`nth(n)`，以及消费过滤器输出流的 `first(expr)`、`last(expr)`、`nth(n; expr)` 和 `isempty(expr)`。数组索引形式沿用已观察的下标行为，包括负下标与未命中 null；生成器形式返回第一个/最后一个/第 n 个输出，越界不产生输出，负 n 报错。`isempty` 在遇到首个输出时即返回 false。复杂多输出索引、精确诊断和错误时序仍待验证。
+
 ## 模块和库搜索
 
 按 `MODULES-DOCUMENTED.md` 的阶段记录实现模块功能。第一阶段必须支持重复的 `-L directory`、在搜索目录中查找 `path.jq` 与 `path/path.jq`、`include "path";`、递归 include、首个搜索目录优先，以及样本显示的候选顺序；缺失模块应明确编译失败。只对已经运行对照的本机 jq 1.8.2 样本作兼容声明，并保留其二进制构建来源未核实这一限制。暂不支持的 `import`、JSON 模块、默认路径、`module` 元数据和 `modulemeta` 必须继续列为缺口，不能静默忽略或宣称兼容。jq 模块属于目标软件的运行时能力，不是 Recipkg 配方依赖。
