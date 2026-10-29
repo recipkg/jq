@@ -30,7 +30,7 @@ printf '提示词：%s\n' "$recipe_dir/build.md"
 | --- | --- |
 | 表达式、赋值与条件 | [编程结构](PROGRAMMING-OBSERVED.md) · [赋值](ASSIGNMENT-OBSERVED.md) · [条件](CONDITIONALS-OBSERVED.md) · [JSON 解析](JSON-PARSING-OBSERVED.md) |
 | 字符串与值 | [字符串过滤器](STRING-FILTERS-OBSERVED.md) · [类型与转换](CONVERSION-OBSERVED.md) · [容器操作](CONTAINMENT-OBSERVED.md) · [位置过滤器](INDEX-OBSERVED.md) · [长度与扁平化](ARRAY-VALUES-OBSERVED.md) · [Unicode](UNICODE-OBSERVED.md) |
-| 集合、生成器与聚合 | [集合操作](COLLECTIONS-OBSERVED.md) · [生成器选择](GENERATOR-OBSERVED.md) · [逻辑聚合](PREDICATES-OBSERVED.md) · [聚合](AGGREGATION-OBSERVED.md) · [范围](RANGE-OBSERVED.md) · [对象条目](ENTRIES-OBSERVED.md) · [数组转置](TRANSPOSE-OBSERVED.md) · [递归遍历](WALK-OBSERVED.md) · [SQL 风格操作](SQL-OBSERVED.md) |
+| 集合、生成器与聚合 | [集合操作](COLLECTIONS-OBSERVED.md) · [生成器选择](GENERATOR-OBSERVED.md) · [递归生成](RECURSE-OBSERVED.md) · [逻辑聚合](PREDICATES-OBSERVED.md) · [聚合](AGGREGATION-OBSERVED.md) · [范围](RANGE-OBSERVED.md) · [对象条目](ENTRIES-OBSERVED.md) · [数组转置](TRANSPOSE-OBSERVED.md) · [递归变换](WALK-OBSERVED.md) · [SQL 风格操作](SQL-OBSERVED.md) |
 | 路径与投影 | [路径读取](GETPATH-OBSERVED.md) · [路径写入](SETPATH-OBSERVED.md) · [路径生成](PATHS-OBSERVED.md) · [多路径删除](DELPATHS-OBSERVED.md) · [路径表达式删除](DELPATH-OBSERVED.md) · [路径投影](PICK-OBSERVED.md) |
 | 输入输出与模块 | [输入输出](IO-OBSERVED.md) · [模块约定](MODULES-DOCUMENTED.md) |
 

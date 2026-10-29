@@ -123,3 +123,11 @@
 - 重建提交为 [`jq-source d522902`](https://github.com/recipkg/jq-source/tree/d5229020ab271d7dd1f286f71efa62c61493874e)，黑盒验证为 [`standard-library-verification d9904e7`](https://github.com/recipkg/standard-library-verification/tree/d9904e713ad122f186615991e10d8107fd5f73de)。
 - 主 jq 合同 19 项、定向 jq 测试 99 项全量通过；本轮 4 项 `walk` 测试通过，含 100 组固定种子嵌套 JSON 差分。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。
 - 深递归资源、对象多结果边界、精确错误、平台和整体兼容性仍未确认。
+
+
+## 本轮更新：递归生成器（配方 v0.1.44）
+
+- 实现有限 `recurse`、`recurse(f)` 和 `recurse(f; condition)`：根值优先、深度优先跟进子值，条件形式在未通过条件时停止该分支。
+- 重建提交为 [`jq-source a0d1bd3`](https://github.com/recipkg/jq-source/tree/a0d1bd3da8778a97837ad937d594e59497182e8a)，黑盒验证为 [`standard-library-verification 57ac488`](https://github.com/recipkg/standard-library-verification/tree/57ac488664dad9d55a4aff8b1500e966af4a88c0)。
+- 主 jq 合同 19 项、定向 jq 测试 103 项全量通过；本轮 4 项 `recurse` 测试通过，默认遍历差分覆盖 100 个固定种子 JSON。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。
+- 无限生成、递归资源、多个条件结果的全部组合、精确错误、平台和完整兼容性仍未确认。
