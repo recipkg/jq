@@ -38,6 +38,8 @@
 
 按 `REGEX-OBSERVED.md` 实现 `test(regex)` 与 `test(regex; flags)`，以 Oniguruma 的 Perl NG 语法处理 Unicode 正则。支持 jq 手册列出的 `g/i/m/n/p/s/l/x` 标志；`g` 对布尔测试无额外影响。单参数还接受字符串或数组简写，数组按前两项取正则和标志；保留正则及标志生成器的输出顺序。当前运行时通过系统 Oniguruma 库提供正则引擎；库不可用时清晰报错。不要据此宣称 `match`、`capture`、`scan`、正则 `split` 或替换过滤器已经实现。
 
+按 `MATCH-OBSERVED.md` 实现 `match(regex)` 与 `match(regex; flags)`：无 `g` 时输出首个匹配对象，有 `g` 时按顺序输出全部非重叠匹配。对象包含 `offset`、`length`、`string`、`captures`；偏移和长度按 jq 观察到的 UTF-8 码点计数。每个捕获项包含 `offset`、`length`、`string`、`name`；未匹配捕获的偏移为 -1、长度为 0、字符串为 null，未命名组的名称为 null。单参数接受字符串或数组简写。零宽全局匹配按观察到的 jq 行为推进一个字节，包含多字节文本时可能产生重复的码点偏移。保留模式/标志生成器顺序，并对照记录中的显式错误。独立 `capture`、`scan`、正则切分和替换仍不在当前合同内。
+
 ## 类型与 JSON 转换
 
 按 `CONVERSION-OBSERVED.md` 实现已测试范围内的 `type`、`tostring`、`tojson` 和 `fromjson`。`type` 应返回六类 JSON 值的 jq 类型名；`tostring` 保持字符串不变、其他值编码为紧凑 JSON；`tojson` 将所有值（包括字符串）编码为紧凑 JSON 文本。`fromjson` 只接受字符串，并对恰好一个 JSON 值产生结果；空文本、无效文本或多个 JSON 文本必须报错。完整解析、数值精度、重复键策略和诊断信息仍待提取，不得将这些样本扩展成全解析器兼容声明。

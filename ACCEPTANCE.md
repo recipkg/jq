@@ -73,3 +73,6 @@
 41. 按 `MATH-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_math_bessel.py` 验收 `j0`、`j1`、`y0`、`y1` 四个单输入 Bessel 过滤器。覆盖正负有限值、零与负定义域、负零序列化、非数字错误，并对 `j0`/`j1` 的正负输入及 `y0`/`y1` 的正输入各作 100 组固定种子差分。参照固定 jq 1.8.2 数学手册；本机参考端报告 1.8.2，构建来源未核实。C 数学符号缺失的平台、极端精度与完整兼容性仍未验证。
 
 42. 按 `REGEX-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_regex.py` 验收 `test(regex)` 和 `test(regex; flags)`：覆盖 Unicode Perl NG 语法、命名组/前瞻、jq 的八个标志、字符串/数组简写、正则/标志生成器顺序、输入/参数/标志类型错误、无效模式和标志，以及 100 组固定种子差分。参考端为本机 `/usr/bin/jq`（报告 jq 1.8.2，构建来源未核实）；当前重建依赖系统 Oniguruma，其他平台及库版本未验证。此用例不验收 `match`、`capture`、`scan`、正则切分或替换函数。
+
+
+43. 按 `MATCH-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_match.py` 验收 `match(regex)` 和 `match(regex; flags)`：检查首个/全局结果对象、Unicode 码点偏移、命名/未命名/未参与匹配的捕获组、数组简写、生成器顺序、零宽全局的一字节推进、参数与正则错误，以及 100 组固定种子差分。参考端为本机 `/usr/bin/jq`（报告 1.8.2，构建来源未核实）；重建依赖宿主 Oniguruma，其他平台和库版本未验证。独立 `capture`、`scan`、正则切分与替换函数不在此项验收内。
