@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.49"
+version = "0.1.50"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -70,4 +70,4 @@ SQL 风格流操作的有限行为见 [`SQL-OBSERVED.md`](SQL-OBSERVED.md)：包
 
 路径投影的有限行为见 [`PICK-OBSERVED.md`](PICK-OBSERVED.md)：`pick(path_expressions)` 复制所选对象/数组路径并以 null 补缺失字段和稀疏数组位置。负数组索引、切片和复杂路径仍未纳入。
 
-数值行为分别见 [`ROUNDING-OBSERVED.md`](ROUNDING-OBSERVED.md) 与 [`MATH-OBSERVED.md`](MATH-OBSERVED.md)。单参数 C 数学函数共记录 36/40 个，四个未实现项为 `j0`、`j1`、`y0`、`y1`；本轮补充了 17 个双参数过滤器、三参数 `fma`，以及返回分解数组的 `frexp`、`modf`。有限数值、定义域边界、奇点、溢出、负零和生成器顺序有本机参考端对照；底层数学库的平台差异、极端精度及完整 jq 兼容性仍未验证。
+数值行为分别见 [`ROUNDING-OBSERVED.md`](ROUNDING-OBSERVED.md) 与 [`MATH-OBSERVED.md`](MATH-OBSERVED.md)。当前宿主数学库支持手册列出的 40/40 个单参数 C 数学函数，包括 `j0`、`j1`、`y0`、`y1` 四个 Bessel 函数；本轮另补充 17 个双参数过滤器、三参数 `fma`，以及返回分解数组的 `frexp`、`modf`。有限数值、定义域边界、奇点、溢出、负零和生成器顺序有本机参考端对照；其他平台的符号可用性、极端精度及完整 jq 兼容性仍未验证。

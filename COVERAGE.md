@@ -175,3 +175,10 @@
 - The full `test_jq_*.py` regression passed all 123 tests in 107.083 seconds through `jq-workspace` commit `1590b89`, pinned to source `c9b4264` and recipe `431db44`. The local reference `/usr/bin/jq` reports 1.8.2; its build provenance is unverified.
 - Recipkg checks passed: pack the pinned recursive dependency, check the archive, render build and discover prompts in English and Simplified Chinese, and confirm the recursive quality recipe and build prompt are present in both build prompts. Two independent packs were byte-identical.
 - Platform library differences, unavailable C symbols, extreme precision, exact diagnostics and full jq compatibility remain unverified.
+
+## Bessel math iteration: 2026-10-30
+
+- Input: jq recipe draft v0.1.50, fixed to upstream jq 1.8.2. The versioned manual lists `j0`, `j1`, `y0`, and `y1` among the 40 single-input C math functions and says availability depends on the host math library.
+- Implemented the four filters through available host C symbols, while keeping them defined with an explicit unavailable-symbol error on systems that lack a symbol.
+- All 4 new Bessel test methods passed, including zero/domain/type boundaries and 100 fixed-seed differential samples per function. The focused math suite passed all 14 tests in 22.981 seconds against `/usr/bin/jq` reporting 1.8.2; the reference binary build provenance is unverified.
+- The full `test_jq_*.py` regression and package validation through the new exact workspace pins are pending. Other platforms, extreme precision, exact diagnostics and full jq compatibility remain unverified.

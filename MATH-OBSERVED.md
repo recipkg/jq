@@ -11,7 +11,14 @@
 | 指数、对数与根 | `cbrt`、`exp`、`exp10`、`exp2`、`expm1`、`log`、`log10`、`log1p`、`log2`、`logb`、`sqrt` |
 | 其他 | `erf`、`erfc`、`fabs`、`gamma`、`lgamma`、`nearbyint`、`rint`、`significand`、`tgamma` |
 
-加上此前四个取整函数，目前覆盖手册列出的 36/40 个单输入函数。`j0`、`j1`、`y0`、`y1` 四个 Bessel 函数仍未实现。本轮另外覆盖 17 个双过滤器参数函数、三参数 `fma`，以及 `frexp`、`modf` 的分解数组结果。
+加上此前四个取整函数，目前在本机可用的 C 数学库上覆盖手册列出的 40/40 个单输入函数。本轮实现了 `j0`、`j1`、`y0`、`y1` 四个 Bessel 函数，并保留宿主缺少对应符号时的显式运行时错误。另覆盖 17 个双过滤器参数函数、三参数 `fma`，以及 `frexp`、`modf` 的分解数组结果。
+
+## Bessel 函数
+
+- 当前 `libm.so.6` 提供 `j0`、`j1`、`y0`、`y1`；重建程序通过 `ctypes` 调用这些单输入 C 函数，jq 侧调用形式仍为作用于当前输入的零显式参数过滤器。
+- `j0`、`j1` 对正负有限输入均与本机参考端对照；`y0`、`y1` 的数值样本限于正输入。已检查零输入：`j0(0)` 为 1，`j1(0)` 为 0，`y0(0)` 与 `y1(0)` 产生的负无穷由 jq 序列化为负最大有限双精度数；负输入的定义域 NaN 序列化为 `null`。
+- 四项测试覆盖有限边界、零/负定义域、负零输出、非数字错误，以及每个函数 100 组固定种子对照。随机输入中 `j0`/`j1` 覆盖正负值，`y0`/`y1` 覆盖约 `1e-200` 至 `1e200` 的正值。
+- jq 1.8 手册规定 C 数学函数的可用性取决于宿主库；当前平台四个符号都存在，不代表其他系统也提供它们。
 
 ## 观察到的输入与边界
 
@@ -33,6 +40,8 @@
 
 ## 重建边界
 
-实现使用 Python 3.11+ 标准库：单输入函数使用 `math`，双/三输入函数通过 `ctypes` 调用宿主 C 数学库。它不加载本机 jq，但依赖宿主提供对应 C 符号；jq 与重建程序的系统数学库仍可能因平台或构建不同而产生差异。参考二进制来源也未核实。因此观察值只构成本机有限样本合同，不代表所有平台上的位级一致性、极端精度、精确错误文本或完整 jq 兼容性。
+实现使用 Python 3.11+ 标准库：大多数单输入函数使用 `math`，Bessel 函数与双/三输入函数通过 `ctypes` 调用宿主 C 数学库。它不加载本机 jq，但依赖宿主提供对应 C 符号；jq 与重建程序的系统数学库仍可能因平台或构建不同而产生差异。参考二进制来源也未核实。因此观察值只构成本机有限样本合同，不代表所有平台上的位级一致性、极端精度、精确错误文本或完整 jq 兼容性。
 
 来源：固定 [jq 1.8 数学函数手册](https://jqlang.org/manual/v1.8/#math)、上游 [`src/libm.h`](https://github.com/jqlang/jq/blob/34f7186b86743a083a589741b6cea95293524108/src/libm.h) 和 [`src/builtin.c`](https://github.com/jqlang/jq/blob/34f7186b86743a083a589741b6cea95293524108/src/builtin.c)。本轮重建提交 [`jq-source 048c762`](https://github.com/recipkg/jq-source/tree/048c76260d5eb373f23cd8ccba54a5c9ac075cdb)，验证提交 [`standard-library-verification 25465a0`](https://github.com/recipkg/standard-library-verification/tree/25465a00d0215822170d4257e6466acac9d5a132)。新增 6 项黑盒测试通过；本机 `test_jq_math*.py` 共 10 项通过（20.458 秒）。`jq-workspace` 提交 `1590b89`（源码 `c9b4264`、配方 `431db44`）下完整 `test_jq_*.py` 回归 123 项全过（107.083 秒）；Recipkg 归档检查、双语 build/discover 与确定性打包也通过。详见 [`COVERAGE.md`](COVERAGE.md)。
+
+本轮实现与差分记录：[`jq-source 898cbecc`](https://github.com/recipkg/jq-source/tree/898cbecc76d01ac70cdc5cdd1c19bce9cb042906)，测试为 [`standard-library-verification ef54cde9`](https://github.com/recipkg/standard-library-verification/tree/ef54cde9cb82c3a924fbafcb13b41a0619dc47e9)。四项 Bessel 测试通过，含每函数 100 组固定种子样本；数学过滤器测试合计 14 项通过（22.981 秒）。新版本完整回归与归档验收待更新后的工作区 pin。
