@@ -100,6 +100,6 @@
 
 按 `WHILE-UNTIL-OBSERVED.md` 实现有限 `while(cond; update)` 与 `until(cond; next)`：`while` 在条件为真时先输出当前值，再递归处理更新结果；`until` 在条件为真时输出当前值，否则递归处理 next 的各个结果。遵循条件真假、多结果分支及顺序样本。仅声明有限测试覆盖的行为；不要宣称无限循环安全、尾调用优化、内存/深度上限或完整错误兼容。
 
-## 数值取整
+## 数值函数
 
-按 `ROUNDING-OBSERVED.md` 实现数字输入上的零参数 `ceil`、`floor`、`round` 和 `trunc`。覆盖正负小数、正负半值、向下/向上/向零取整、`round` 半值远离零，以及输出负零。非数字输入必须报错；非有限数值、极端精度、平台数学库差异和精确诊断不在已验证合同内。
+按 `ROUNDING-OBSERVED.md` 实现 `ceil`、`floor`、`round`、`trunc`；按 `MATH-OBSERVED.md` 实现其余已记录的单参数数学函数：`acos`、`acosh`、`asin`、`asinh`、`atan`、`atanh`、`cbrt`、`cos`、`cosh`、`erf`、`erfc`、`exp`、`exp10`、`exp2`、`expm1`、`fabs`、`gamma`、`lgamma`、`log`、`log10`、`log1p`、`log2`、`logb`、`nearbyint`、`rint`、`significand`、`sin`、`sinh`、`sqrt`、`tan`、`tanh`、`tgamma`。输入须为数字；遵循记录的负零、ties-to-even、定义域错误、奇点与溢出样本。`gamma`、`lgamma` 的目标行为和底层系统数学库有关，按样本处理并保留平台差异风险。`j0`、`j1`、`y0`、`y1` 以及多参数数学函数不在本次实现范围。有限样本之外不要推断精确诊断、极端精度或跨平台一致性。

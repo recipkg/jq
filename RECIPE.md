@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.47"
+version = "0.1.48"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -70,4 +70,4 @@ SQL 风格流操作的有限行为见 [`SQL-OBSERVED.md`](SQL-OBSERVED.md)：包
 
 路径投影的有限行为见 [`PICK-OBSERVED.md`](PICK-OBSERVED.md)：`pick(path_expressions)` 复制所选对象/数组路径并以 null 补缺失字段和稀疏数组位置。负数组索引、切片和复杂路径仍未纳入。
 
-数值取整的有限行为见 [`ROUNDING-OBSERVED.md`](ROUNDING-OBSERVED.md)：支持 `ceil`、`floor`、`round` 和 `trunc` 的样本合同，覆盖负数、半值和负零；非有限值、极端数值与完整数学库仍未提取。
+数值行为分别见 [`ROUNDING-OBSERVED.md`](ROUNDING-OBSERVED.md) 与 [`MATH-OBSERVED.md`](MATH-OBSERVED.md)。单参数 C 数学函数共记录 36/40 个，其中本轮补充 32 个；`j0`、`j1`、`y0`、`y1` 及多参数数学函数仍未实现。有限数值、定义域边界、奇点、溢出和负零样本有本机参考端对照；底层数学库的平台差异、极端精度及完整 jq 兼容性仍未验证。

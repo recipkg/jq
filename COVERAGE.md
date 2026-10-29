@@ -158,3 +158,11 @@
 - All 3 new black-box methods passed, including 100 fixed-seed finite decimal values per filter. The complete targeted `test_jq_*.py` regression passed: 113 tests in 74.990 seconds. Reference `/usr/bin/jq` reports 1.8.2; its build provenance is unverified.
 - Reconstruction commit: [`jq-source 383578d`](https://github.com/recipkg/jq-source/tree/383578dd5e603ea1352efe390cf4de992224b5f5); black-box verification commit: [`standard-library-verification d315210`](https://github.com/recipkg/standard-library-verification/tree/d3152106a13a6803f68ac417bfcbc024a3a144cd).
 - Non-finite values, extreme numeric precision, platform math-library variation, exact diagnostics and complete jq compatibility remain unverified.
+
+## Single-argument math iteration: 2026-10-30
+
+- Input: recipe v0.1.48, fixed to jq 1.8.2. The versioned jq manual lists 40 single-argument C math functions and notes that availability depends on the operating system math library.
+- Scope: implement the 32 remaining single-argument functions supported by the available Python math library and arithmetic (`acos`, `acosh`, `asin`, `asinh`, `atan`, `atanh`, `cbrt`, `cos`, `cosh`, `erf`, `erfc`, `exp`, `exp10`, `exp2`, `expm1`, `fabs`, `gamma`, `lgamma`, `log`, `log10`, `log1p`, `log2`, `logb`, `nearbyint`, `rint`, `significand`, `sin`, `sinh`, `sqrt`, `tan`, `tanh`, `tgamma`). Together with `ceil`, `floor`, `round`, and `trunc`, this covers 36 of the 40 documented unary functions; `j0`, `j1`, `y0`, `y1` remain explicit gaps.
+- Four new black-box methods passed: finite reference comparisons, non-number failures for every function, domain/singularity/overflow and signed-zero cases, and 100 fixed-seed values per added function. Reference `/usr/bin/jq` reports 1.8.2; build provenance is unverified. Gamma-family calculations may differ by a few floating-point units.
+- Full `test_jq_*.py` regression passed: 117 tests in 86.261 seconds. Reconstruction commit: [`jq-source b7c3b67`](https://github.com/recipkg/jq-source/tree/b7c3b67f5b57631c5adbcd5e288ad4588483a988); verification commit: [`standard-library-verification 89d925f`](https://github.com/recipkg/standard-library-verification/tree/89d925fab7603516a93993817e2963e03b36461f).
+- Two- and three-argument math functions, platform libm variation, extreme precision and full jq compatibility remain unverified.
