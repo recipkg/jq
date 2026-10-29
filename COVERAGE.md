@@ -85,3 +85,10 @@
 - 增加大写 `INDEX`、`JOIN` 两/三/四参数形式及大写 `IN` 单/双流判断的有限合同：[`SQL-OBSERVED.md`](SQL-OBSERVED.md)。覆盖重复和多值索引键、复合键转字符串、联结未命中、两侧合并，以及固定种子索引联结。
 - 独立重建提交：[jq-source `d4f116a7b9af6b70c1270253c97eca8269c928b9`](https://github.com/recipkg/jq-source/tree/d4f116a7b9af6b70c1270253c97eca8269c928b9)；黑盒验证提交：[standard-library-verification `d1cd01e`](https://github.com/recipkg/standard-library-verification/tree/d1cd01e50edced74232428d5b5740eedae87f558)。85 项定向测试全量通过；本轮 5 项 SQL 操作测试在增加复合键覆盖后再次通过，含 100 组固定种子联结差分。
 - 参考端 `/usr/bin/jq` 报告 1.8.2，构建来源未核实。完整流求值顺序、错误时序、资源边界、平台及 jq 全量兼容性仍未确认。
+
+
+## 本轮更新：路径表达式删除（配方 v0.1.39）
+
+- 增加 `del(path_expression)` 的有限删除合同：[`DELPATH-OBSERVED.md`](DELPATH-OBSERVED.md)。覆盖对象/数组路径、多个下标、迭代路径、未命中、重叠路径、负/越界下标和根路径；目标路径按一次性删除处理。
+- 独立重建提交：[jq-source `d2356495aa8991287fc9e5e97343e4679bcb709b`](https://github.com/recipkg/jq-source/tree/d2356495aa8991287fc9e5e97343e4679bcb709b)；黑盒验证提交：[standard-library-verification `e629c9a`](https://github.com/recipkg/standard-library-verification/tree/e629c9ad06c5e85b9b5ba9f4503a84612120f80f)。89 项定向测试全量通过；本轮 4 项 `del` 测试再次通过，含 100 组固定种子嵌套值差分。
+- 参考端 `/usr/bin/jq` 报告 1.8.2，构建来源未核实。复杂路径表达式、完整错误语义、资源边界、平台和完整 jq 兼容性仍未确认。

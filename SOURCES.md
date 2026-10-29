@@ -37,3 +37,6 @@
 
 - SQL 风格大写 `INDEX`、`JOIN` 与 `IN` 的定义依据固定版本 [jq 1.8 手册 SQL-Style Operators](https://jqlang.org/manual/v1.8/)；本地有限样本见 [`SQL-OBSERVED.md`](SQL-OBSERVED.md) 与验收用例 29。小写 `in` 仍是独立的既有成员过滤器。
 - 独立重建提交：[jq-source `d4f116a7b9af6b70c1270253c97eca8269c928b9`](https://github.com/recipkg/jq-source/tree/d4f116a7b9af6b70c1270253c97eca8269c928b9)，验证提交：[standard-library-verification `d1cd01e`](https://github.com/recipkg/standard-library-verification/tree/d1cd01e50edced74232428d5b5740eedae87f558)。85 项定向测试全量通过；更新复合索引键样本后，本轮 5 项 SQL 操作测试再次通过。参考端 `/usr/bin/jq` 报告 1.8.2，构建来源未核实。
+
+- `del(path_expression)` 的对象/数组删除语义依据固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)并以本机样本核对；有限行为及路径边界见 [`DELPATH-OBSERVED.md`](DELPATH-OBSERVED.md) 与验收用例 30。
+- 独立重建提交：[jq-source `d2356495aa8991287fc9e5e97343e4679bcb709b`](https://github.com/recipkg/jq-source/tree/d2356495aa8991287fc9e5e97343e4679bcb709b)，验证提交：[standard-library-verification `e629c9a`](https://github.com/recipkg/standard-library-verification/tree/e629c9ad06c5e85b9b5ba9f4503a84612120f80f)。89 项定向测试全量通过；本轮 4 项 `del` 测试含 100 组固定种子路径删除对照。参考端报告 jq 1.8.2，构建来源未核实。

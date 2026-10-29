@@ -49,3 +49,5 @@
 28. 按 `DELPATHS-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_delpaths.py` 验收 `delpaths(PATHS)` 对对象和数组的同时删除，确认数组按原始索引处理，并覆盖嵌套/重叠/重复路径、缺失对象键、越界/负/小数索引、根空路径、null 根值及无效组合；比较 100 个固定种子嵌套值。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；错误文本、极端索引/资源和完整 jq 兼容性仍未验证。
 
 29. 按 `SQL-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_sql_operators.py` 验收大写 `INDEX`、`JOIN` 两/三/四参数形式和大写 `IN` 单/双流成员判断；覆盖重复与多值索引键、null/布尔/数字/数组/对象键、缺失联结、合并表达式及空流，并比较 100 组固定种子索引联结。参考端 `/usr/bin/jq` 报告 1.8.2，构建来源未核实；更广泛的流时序、错误和资源行为未在本项验证。
+
+30. 按 `DELPATH-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_del.py` 验收 `del(path_expression)` 的对象/数组字段删除、同时多下标、对象和数组迭代、负/越界下标、缺失字段、重叠路径与根删除；比较 100 组固定种子嵌套值。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；复杂路径、错误时序和资源边界仍未确认。
