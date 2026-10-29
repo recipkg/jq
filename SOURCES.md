@@ -7,4 +7,5 @@
 - 字符串过滤器使用同一固定提交中的 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)作为合同来源；有限本机对照及未验证边界见 [STRING-FILTERS-OBSERVED.md](STRING-FILTERS-OBSERVED.md) 和验收用例 14。
 - 类型与 JSON 转换过滤器也参考固定提交的 [jq 1.8 手册“Convert to/from JSON”](https://jqlang.org/manual/v1.8/)；局部对照、上游二进制来源限制及解析器缺口见 [CONVERSION-OBSERVED.md](CONVERSION-OBSERVED.md) 和验收用例 15。
 - `contains`、`inside` 与 `reverse` 参考固定提交的 [jq 1.8 手册容器过滤器](https://jqlang.org/manual/v1.8/)；递归包含和类型错配的局部样本见 [CONTAINMENT-OBSERVED.md](CONTAINMENT-OBSERVED.md) 及验收用例 16。
+- `indices`、`index`、`rindex` 参考固定提交的 jq 1.8 手册位置过滤器；重叠、Unicode 码点、数组连续子项和 null/object 边界见 [INDEX-OBSERVED.md](INDEX-OBSERVED.md) 及验收用例 17。
 - 当前材料主要覆盖文档中的 CLI 与过滤器，并以本机二进制验证了少量样本；尚未完整审阅固定源码、全部测试、平台构建或公共 C API。各项证据与边界见 [COVERAGE.md](COVERAGE.md)。

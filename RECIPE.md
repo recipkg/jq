@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.25"
+version = "0.1.26"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -25,3 +25,5 @@ subdir = "recipes/software-quality"
 类型检查和 JSON 文本转换的有限样本见 [`CONVERSION-OBSERVED.md`](CONVERSION-OBSERVED.md)。完整 JSON 解析语义仍未覆盖。
 
 容器包含、`inside` 和数组 `reverse` 的有限合同见 [`CONTAINMENT-OBSERVED.md`](CONTAINMENT-OBSERVED.md)；递归边界与类型错误仍有未验证部分。
+
+字符串与数组的 `indices`、`index`、`rindex` 有限样本见 [`INDEX-OBSERVED.md`](INDEX-OBSERVED.md)；其他输入类型组合仍未完整提取。
