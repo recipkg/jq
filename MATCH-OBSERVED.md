@@ -17,6 +17,6 @@
 
 ## 验证与边界
 
-`standard-library-verification/tests/test_jq_match.py` 覆盖匹配对象、命名/未命名及缺失捕获、全局匹配、数组简写、生成器顺序、Unicode 偏移、零宽全局行为、参数错误和 100 组固定种子差分。样本对应独立重建实现；本机参考程序的精确构建来源未验证。
+`standard-library-verification/tests/test_jq_match.py` 覆盖匹配对象、命名/未命名及缺失捕获、全局匹配、数组简写、生成器顺序、Unicode 偏移、零宽全局行为、参数错误和 100 组固定种子差分。5 项聚焦测试通过；完整 `test_jq_*.py` 回归 137 项通过（234.289 秒），工作区 `jq-workspace 0abca2d` 固定重建源码 `22a667e` 和本配方 `5d9cbd4`。本机参考程序的精确构建来源未验证。
 
 当前宿主提供 `libonig`。其他操作系统、Oniguruma 版本/ABI、超大输入和模式资源消耗、全部语法选项与完整 jq 兼容性尚未验证。独立 `capture`、`scan`、正则 `split`/`splits`、`sub`、`gsub` 不属于本轮实现。

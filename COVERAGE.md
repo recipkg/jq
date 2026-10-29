@@ -192,4 +192,4 @@
 
 
 - 新增 `match(regex)` 与 `match(regex; flags)`：首个/全局匹配对象、捕获元数据、Unicode 偏移、零宽全局字节推进和生成器错误边界见 [`MATCH-OBSERVED.md`](MATCH-OBSERVED.md)。
-- 对应独立重建实现 [`jq-source 22a667e`](https://github.com/recipkg/jq-source/tree/22a667e58dd42fd1f160092edfe5575c524b0871)，黑盒用例 [`standard-library-verification ac7ea55`](https://github.com/recipkg/standard-library-verification/tree/ac7ea559fce672a64611d052d23b0c4f3ca19d3c)。5 项聚焦测试（含 100 组固定种子差分）通过；完整工作区回归待执行。参考 `/usr/bin/jq` 报告 1.8.2，构建来源未核实。
+- 对应独立重建实现 [`jq-source 22a667e`](https://github.com/recipkg/jq-source/tree/22a667e58dd42fd1f160092edfe5575c524b0871)，黑盒用例 [`standard-library-verification ac7ea55`](https://github.com/recipkg/standard-library-verification/tree/ac7ea559fce672a64611d052d23b0c4f3ca19d3c)。5 项聚焦测试（含 100 组固定种子差分）通过。完整 `test_jq_*.py` 工作区回归通过 137 项（234.289 秒），工作区提交 [`jq-workspace 0abca2d`](https://github.com/recipkg/jq-workspace/tree/0abca2d50a2bd46c4d4f88f9e22fa26d7801facb) 固定源码 `22a667e` 与本配方 `5d9cbd4`。参考 `/usr/bin/jq` 报告 1.8.2，构建来源未核实。
