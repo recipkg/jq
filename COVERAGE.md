@@ -71,3 +71,10 @@
 - 独立重建提交：[jq-source `5ae62c6900f957c84e2eed247a8d5159a372f341`](https://github.com/recipkg/jq-source/tree/5ae62c6900f957c84e2eed247a8d5159a372f341)；验证提交：[standard-library-verification `a5d615a80245be0899bf2eb5a3be474d53681d14`](https://github.com/recipkg/standard-library-verification/tree/a5d615a80245be0899bf2eb5a3be474d53681d14)。
 - 主 jq 合同 19 项、定向 jq 测试 76 项通过；本轮 3 项路径生成测试通过，含 100 个固定种子 JSON 值差分。参考端 `/usr/bin/jq` 报告 1.8.2，构建来源未核实。
 - 复杂路径语法、全部类型/错误边界、平台和完整 jq 兼容性仍未确认。
+
+
+## 本轮更新：多路径删除（配方 v0.1.37）
+
+- 增加 `delpaths(PATHS)` 同时删除对象键与数组元素的有限合同：[`DELPATHS-OBSERVED.md`](DELPATHS-OBSERVED.md)。数组删除按原始索引处理；本轮样本包括重复/嵌套/重叠路径、缺失键、越界/负/小数索引、空根路径和非法组合。
+- 独立重建提交：[jq-source `d7b6cf01b136f30f93cf2d7ae8233308cdbbcc9f`](https://github.com/recipkg/jq-source/tree/d7b6cf01b136f30f93cf2d7ae8233308cdbbcc9f)；黑盒验证提交：[standard-library-verification `c19b3b8`](https://github.com/recipkg/standard-library-verification/tree/c19b3b8794236e297c298cedd5d7099d4447380a)。19 项主合同与 80 项定向测试全量通过；更新小数下标边界后，本轮 4 项 delpaths 测试再次通过，含 100 组固定种子嵌套值对照。
+- 参考端 `/usr/bin/jq` 报告 1.8.2，构建来源未核实。精确错误语义、极端索引和资源边界、平台及完整 jq 兼容性仍未确认。

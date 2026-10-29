@@ -31,3 +31,6 @@
 
 - `path(expr)`、`paths` 及条件路径筛选参考固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)；有限语法和样本边界见 [`PATHS-OBSERVED.md`](PATHS-OBSERVED.md) 与验收用例 27。
 - 当前独立重建提交：[jq-source `5ae62c6900f957c84e2eed247a8d5159a372f341`](https://github.com/recipkg/jq-source/tree/5ae62c6900f957c84e2eed247a8d5159a372f341)，验证提交：[standard-library-verification `a5d615a80245be0899bf2eb5a3be474d53681d14`](https://github.com/recipkg/standard-library-verification/tree/a5d615a80245be0899bf2eb5a3be474d53681d14)。主合同 19 项、定向 76 项测试通过；参考构建来源未核实。
+
+- `delpaths` 同时删除多条对象/数组路径，数组下标按原始输入解释；定义参照固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)，黑盒边界记录于 [`DELPATHS-OBSERVED.md`](DELPATHS-OBSERVED.md) 与验收用例 28。
+- 独立重建提交：[jq-source `d7b6cf01b136f30f93cf2d7ae8233308cdbbcc9f`](https://github.com/recipkg/jq-source/tree/d7b6cf01b136f30f93cf2d7ae8233308cdbbcc9f)，验证提交：[standard-library-verification `c19b3b8`](https://github.com/recipkg/standard-library-verification/tree/c19b3b8794236e297c298cedd5d7099d4447380a)。19 项主合同与 80 项定向测试全量通过；补入小数下标样本后，本轮 4 项 delpaths 测试再次通过。参考端报告 jq 1.8.2，构建来源未核实。
