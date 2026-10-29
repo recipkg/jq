@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.42"
+version = "0.1.43"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -53,6 +53,8 @@ UTF-8 字节计数与 `explode`/`implode` 转换的有限 Unicode 样本见 [`UN
 
 
 路径生成的有限行为见 [`PATHS-OBSERVED.md`](PATHS-OBSERVED.md)：包括 `path(expr)`、递归 `paths` 和按条件筛选路径。复杂语法与遍历错误边界仍待提取。
+
+`walk(f)` 的有限递归转换合同见 [`WALK-OBSERVED.md`](WALK-OBSERVED.md)：对数组和对象先处理子值，再对当前容器应用 `f`；具体多值行为与未验证边界以观察记录为准。
 
 多路径删除的有限行为见 [`DELPATHS-OBSERVED.md`](DELPATHS-OBSERVED.md)：`delpaths(PATHS)` 同时删除对象键与数组元素，数组路径按原始索引解释。重复路径、缺失路径、负/小数索引与错误边界仍只覆盖有限样本。
 

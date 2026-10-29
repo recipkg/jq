@@ -115,3 +115,11 @@
 - 重建代码基线仍为 [`jq-source 206c30f`](https://github.com/recipkg/jq-source/tree/206c30f08bb926ffe606e4221f2f1c0d21fc5893)；状态文档更新为 [`40b9010`](https://github.com/recipkg/jq-source/tree/40b901064e53f55c7fb173bde03ccf3a4e969671)，黑盒验证为 [`8fa4c5f`](https://github.com/recipkg/standard-library-verification/tree/8fa4c5f3dff3c89ad530557586e4106f6f3e5100)。
 - 主 jq 合同 19 项、定向 jq 测试 95 项全量通过；本轮 4 项 `setpath` 测试通过，含 100 组固定种子对象/数组更新差分。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。
 - 其他路径/值生成器组合、极端索引和资源边界、平台及完整 jq 兼容性仍未确认。
+
+
+## 本轮更新：递归遍历（配方 v0.1.43）
+
+- 实现有限 `walk(f)`：对象值与数组元素先递归转换，再对当前容器应用 f；覆盖后序数组排序、对象与标量变换，以及数组中子节点多结果展开。
+- 重建提交为 [`jq-source d522902`](https://github.com/recipkg/jq-source/tree/d5229020ab271d7dd1f286f71efa62c61493874e)，黑盒验证为 [`standard-library-verification d9904e7`](https://github.com/recipkg/standard-library-verification/tree/d9904e713ad122f186615991e10d8107fd5f73de)。
+- 主 jq 合同 19 项、定向 jq 测试 99 项全量通过；本轮 4 项 `walk` 测试通过，含 100 组固定种子嵌套 JSON 差分。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。
+- 深递归资源、对象多结果边界、精确错误、平台和整体兼容性仍未确认。

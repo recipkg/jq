@@ -57,3 +57,5 @@
 32. 按 `GETPATH-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_getpath.py` 验收 `getpath(PATHS)` 从单一路径和逗号生成的多个路径中依次读取值，并覆盖嵌套对象/数组路径、缺失键、越界/负下标、小数索引截断、null 中断及已测非法路径。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；其他生成器组合、精确错误语义及完整 jq 兼容性仍未验证。
 
 33. 按 `SETPATH-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_setpath.py` 验收 `setpath(PATHS; VALUE)` 的逗号生成多路径行为：每条路径独立地基于原输入更新，按路径顺序输出；并保留既有自动建容器、数组扩展、负下标、根替换和非法路径样本。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；其他多值组合、精确错误语义及完整 jq 兼容性仍未验证。
+
+34. 按 `WALK-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_walk.py` 验收 `walk(f)` 的后序递归：数组子值先变换后排序，嵌套标量与对象分别变换，数组子节点产生的多个结果按观察到的行为展开；另与本机参考端比较 100 组固定种子嵌套 JSON。参考端 `/usr/bin/jq` 报告 1.8.2，构建来源未核实；递归资源、完整错误和对象多结果边界仍未验证。
