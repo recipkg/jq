@@ -26,3 +26,4 @@
 18. 按 `ARRAY-VALUES-OBSERVED.md` 和 `standard-library-verification/tests/test_jq_array_values.py` 验收 `length` 与 `flatten`：检查 Unicode 字符串长度、数组与对象长度、null、数字绝对值、布尔错误、完整及有限深度展开、对象值输入、非数组/对象输入和负深度。配置 jq 1.8.2 参考端对比 80 组嵌套数组和深度 0–4，并覆盖已声明的长度样本。仅支持非负整数深度；小数深度显式失败且不属于兼容范围。
 19. 按 `UNICODE-OBSERVED.md` 和 `standard-library-verification/tests/test_jq_unicode.py` 验收 `utf8bytelength`、`explode`、`implode`：覆盖 ASCII、多字节码点、组合字符、NUL、补充平面字符、反向转换、分数截断、越界/代理码点替换及类型错误。设置 jq 1.8.2 参考端对照 100 个固定种子字符串与 100 组合法码点数组；该样本不涵盖完整 Unicode 或任意巨大数值边界。
 20. 按 `GENERATOR-OBSERVED.md` 和 `standard-library-verification/tests/test_jq_generators.py` 验收数组形式与生成器形式的 `first`、`last`、`nth`，以及 `isempty`。覆盖 null/空数组、负数组索引、负生成器索引错误、越界行为、empty 生成器和 100 组固定种子数组上的 11 种过滤器对照。该样本不覆盖所有复杂生成器或错误时序。
+21. 按 `PREDICATES-OBSERVED.md` 和 `standard-library-verification/tests/test_jq_predicates.py` 验收 `any`/`all` 的直接 iterable、条件和生成器/条件形式。覆盖数组、对象、空输入、非 iterable 错误以及 100 组固定种子值数组上的六种过滤器对照；不将有限短路样本外推为所有条件流和错误时序。
