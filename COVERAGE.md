@@ -210,4 +210,4 @@
 ## 正则替换覆盖
 
 - 按固定 jq 1.8 手册和上游 `src/builtin.jq` 增加有限 `sub` / `gsub` 及替换字符串插值合同，覆盖首个/全局行为、命名捕获上下文、替换输出流位置合并、flags、空匹配、错误和固定种子差分；详见 [SUB-GSUB-OBSERVED.md](SUB-GSUB-OBSERVED.md)。
-- 新增 `test_jq_regex_replace.py` 的 8 个聚焦方法通过。完整回归及 jq@0.1.56 最终打包/双语构建验收将在源码、验证与配方提交固定后记录。
+- 新增 `test_jq_regex_replace.py` 的 8 个聚焦方法通过。完整回归及 jq@0.1.56 最终验收门槛为固定源码/配方提交后的完整回归、双语 build/discover、递归依赖闭包、确定性打包与源文件未改写。
