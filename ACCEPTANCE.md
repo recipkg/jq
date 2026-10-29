@@ -33,3 +33,6 @@
 
 
 23. 按 `ENTRIES-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_entries.py` 验收对象/数组 `to_entries`、`from_entries` 的 `key`/`Key`/`name`/`Name` 和 `value`/`Value` 字段、重复键、缺省值，以及用 `with_entries` 更新或筛选条目。设置本机 `/usr/bin/jq` 参考端比较 100 个对象和 100 个数组；参考二进制报告 jq 1.8.2，但构建来源未核实。该有限样本不涵盖所有输入类型、错误时序或完整过滤器兼容性。
+
+
+24. 按 `TRANSPOSE-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_transpose.py` 验收矩形、锯齿状、空行和 null 行；短行补 null，空矩阵输出空数组，非数组顶层及非数组非 null 行失败。参考端为本机 `/usr/bin/jq`（报告 1.8.2，构建来源未核实），差分覆盖 100 组固定种子矩阵；不据此宣称完整类型、错误或资源兼容。

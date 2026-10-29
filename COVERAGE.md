@@ -39,3 +39,11 @@
 - 独立重建提交：[jq-source `25c42f93510d8272ce44a1efa067e7c4e98e58c4`](https://github.com/recipkg/jq-source/tree/25c42f93510d8272ce44a1efa067e7c4e98e58c4)；黑盒样本提交：[standard-library-verification `eeb7e48`](https://github.com/recipkg/standard-library-verification/tree/eeb7e48ff35c6706f063bb6130558f5cddf9b9d6)。
 - 主 jq 合同 19 项、定向 jq 测试 63 项通过；本轮 4 项转换测试通过，差分覆盖 100 个对象和 100 个数组。参考端 `/usr/bin/jq` 报告 1.8.2，但构建来源未核实。
 - 全部类型/键边界、错误时序、其他平台与完整 jq 兼容性仍未验证；整个配方及重建仍在提取中。
+
+
+## 本轮更新：数组转置（配方 v0.1.33）
+
+- 增加 `transpose` 的有限行为合同：[`TRANSPOSE-OBSERVED.md`](TRANSPOSE-OBSERVED.md)。
+- 独立重建提交：[jq-source `af4933be75d99583f659bccd4bb1faf01a506627`](https://github.com/recipkg/jq-source/tree/af4933be75d99583f659bccd4bb1faf01a506627)；验证提交：[standard-library-verification `a89ce265f0f6e244f24971c39e4e7e8d78fef66d`](https://github.com/recipkg/standard-library-verification/tree/a89ce265f0f6e244f24971c39e4e7e8d78fef66d)。
+- 主 jq 合同 19 项、定向 jq 测试 67 项通过；本轮 4 项转置测试通过，差分覆盖 100 组固定种子矩阵。参考端 `/usr/bin/jq` 报告 1.8.2，但构建来源未核实。
+- 极端矩阵、精确错误行为、其他平台和完整 jq 兼容性仍未确认；不能据此标记配方或重建已完成。

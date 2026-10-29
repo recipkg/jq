@@ -19,3 +19,6 @@
 
 - `to_entries`、`from_entries`、`with_entries` 的定义与字段别名参考固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)；本机对照和差分边界见 [`ENTRIES-OBSERVED.md`](ENTRIES-OBSERVED.md) 与验收用例 23。
 - 本轮独立重建位于 [jq-source `25c42f93510d8272ce44a1efa067e7c4e98e58c4`](https://github.com/recipkg/jq-source/tree/25c42f93510d8272ce44a1efa067e7c4e98e58c4)，验证样本位于 [standard-library-verification `eeb7e48`](https://github.com/recipkg/standard-library-verification/tree/eeb7e48ff35c6706f063bb6130558f5cddf9b9d6)。19 项主 jq 合同与 63 项定向样本通过；参考二进制构建来源未核实。
+
+- `transpose` 的补 null、空行及 null 行行为参照固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)并以本机样本确认；见 [`TRANSPOSE-OBSERVED.md`](TRANSPOSE-OBSERVED.md) 与验收用例 24。
+- 独立重建：[jq-source `af4933be75d99583f659bccd4bb1faf01a506627`](https://github.com/recipkg/jq-source/tree/af4933be75d99583f659bccd4bb1faf01a506627)，验证样本：[standard-library-verification `a89ce265f0f6e244f24971c39e4e7e8d78fef66d`](https://github.com/recipkg/standard-library-verification/tree/a89ce265f0f6e244f24971c39e4e7e8d78fef66d)。本轮 4 项转置测试和此前累计的 19 项主合同、67 项定向测试通过；参考构建来源未核实。

@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.32"
+version = "0.1.33"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -41,3 +41,6 @@ UTF-8 字节计数与 `explode`/`implode` 转换的有限 Unicode 样本见 [`UN
 
 
 对象与数组条目转换的有限样本见 [`ENTRIES-OBSERVED.md`](ENTRIES-OBSERVED.md)：覆盖 `to_entries`、`from_entries` 与 `with_entries`，包括键名别名、键/值更新和筛选。复杂类型与完整错误时序仍有缺口。
+
+
+数组转置的有限合同见 [`TRANSPOSE-OBSERVED.md`](TRANSPOSE-OBSERVED.md)：包括不齐行补 null、空行和 null 行；其他异常输入与资源边界仍待验证。
