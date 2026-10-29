@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.45"
+version = "0.1.46"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -59,6 +59,8 @@ UTF-8 字节计数与 `explode`/`implode` 转换的有限 Unicode 样本见 [`UN
 `recurse`、`recurse(f)` 与 `recurse(f; condition)` 的有限遍历合同见 [`RECURSE-OBSERVED.md`](RECURSE-OBSERVED.md)：按深度优先顺序输出根值和满足条件的后继值。无限递归、深度与资源边界仍未纳入。
 
 `limit(n; expr)` 与 `skip(n; expr)` 的有限流选择合同见 [`LIMIT-SKIP-OBSERVED.md`](LIMIT-SKIP-OBSERVED.md)。实测小数计数、多计数生成器与无限递归样本，不代表完整错误语义或完整兼容性。
+
+`while(cond; update)` 与 `until(cond; next)` 的有限迭代合同见 [`WHILE-UNTIL-OBSERVED.md`](WHILE-UNTIL-OBSERVED.md)：条件控制当前值是否输出或继续更新，更新多结果形成独立分支。递归资源、无限循环与完整错误语义仍未提取。
 
 多路径删除的有限行为见 [`DELPATHS-OBSERVED.md`](DELPATHS-OBSERVED.md)：`delpaths(PATHS)` 同时删除对象键与数组元素，数组路径按原始索引解释。重复路径、缺失路径、负/小数索引与错误边界仍只覆盖有限样本。
 

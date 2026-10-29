@@ -140,3 +140,13 @@
 - 本轮 4 项定向测试通过；随后完整 jq 回归 107 项全量通过（70.859 秒）。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。
 - 重建提交为 [`jq-source 9cb71e9`](https://github.com/recipkg/jq-source/tree/9cb71e9227ab8ca998e3230281b9ff50e9d14d70)，验证提交为 [`standard-library-verification 13f0198`](https://github.com/recipkg/standard-library-verification/tree/13f01983f7b2c3009b9b14e13256cdf466cfde0c)。
 - 精确诊断和错误时序、复杂多值交错、大数与极端数值、递归资源、平台和完整 jq 兼容性仍未确认。
+
+
+## 本轮提取：循环生成器（配方 v0.1.46）
+
+- 实现有限 `while(cond; update)` 与 `until(cond; next)`：按条件输出当前值或继续处理更新流，并保留多条件/多更新结果产生的独立分支及顺序。固定样本覆盖初始停止、单结果迭代、分支输出和 100 组固定种子正步长输入。
+- 本轮 3 项定向测试通过；完整 jq 回归 110 项全量通过（68.008 秒）。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。
+- 重建提交为 [`jq-source f6ead63`](https://github.com/recipkg/jq-source/tree/f6ead6311656aac3c89042f8986897759d72b392)，验证提交为 [`standard-library-verification 8e241b8`](https://github.com/recipkg/standard-library-verification/tree/8e241b8ce6a7eb5db0357ec4ecb662b8a38239ec)。
+- 在隔离的 Recipkg 存储中同时安装并构建 `jq@0.1.44`、`jq@0.1.45`、`jq@0.1.46`；三版各自保留递归 `software-quality` 上下文，生成提示词中的循环/流组合器与版本边界相符。
+- 上游 jq 手册提到单结果更新可使用尾调用优化；不将此上游属性当作当前重建程序的资源保证。
+- 无限循环保护、尾调用优化、递归/内存上限、极端深度、错误时序与平台差异仍未验证。
