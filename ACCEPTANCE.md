@@ -19,3 +19,4 @@
 12. 按 `AGGREGATION-OBSERVED.md` 核对多值与空键、键相同的元素顺序、排序/分组/去重、最大最小值、`add` 的空输入、不同类型和生成器、错误和不可迭代输入；记录固定上游和重建程序的实际输出。
 
 13. 按 `MODULES-DOCUMENTED.md` 检查模块第一阶段：用 `-L` 从临时搜索目录加载 `include "math/step"`，分别覆盖 `math/step.jq` 与仅存在 `math/step/step.jq` 的布局；验证模块定义可调用、模块可递归 include、多个 `-L` 按记录的优先级搜索，并验证缺失模块以编译错误退出。暂不把 `import`、JSON 模块、默认搜索路径、`module` 元数据或 `modulemeta` 记作通过。使用 `standard-library-verification/tests/test_jq_modules.py`，与本机 jq 1.8.2 对照时记录二进制构建来源限制。
+14. 按 `STRING-FILTERS-OBSERVED.md` 和 `standard-library-verification/tests/test_jq_strings.py` 验收字符串样本：前缀/后缀判断和裁剪、ASCII 大小写转换、字面分隔符切分、空字符串及空分隔符、数组/对象 join、null/数值/布尔转换和类型错误。设置 `RECIPKG_TEST_JQ_REFERENCE` 对照预期 jq 1.8.2，运行 120 个固定种子字符串、100 个混合值数组和 100 个对象差分样本；对照目标的版本及构建来源需单独记录。该组样本不覆盖正则切分、完整 Unicode/格式语义或全部 jq 内建函数。
