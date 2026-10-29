@@ -67,3 +67,5 @@
 38. 按 `ROUNDING-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_rounding.py` 验收有限数值上的 `ceil`、`floor`、`round` 和 `trunc`，覆盖正负小数、正负半值、负零、非数字报错，以及 100 组固定种子小数差分。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；非有限值、极端精度、平台差异与完整数学函数兼容性仍未验证。
 
 39. 按 `MATH-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_math.py` 验收 32 个新增单参数 C 数学函数：有限值样本、数字类型检查、定义域/奇点/溢出/负零边界，以及每函数 100 组固定种子差分。`gamma`、`lgamma`、`tgamma` 允许记录的微小浮点误差；其余样本要求与本机参考端一致。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；四个 Bessel 函数、双/三参数函数、平台数学库变化和完整 jq 兼容性仍未验证。
+
+40. 按 `MATH-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_math_multi.py` 验收 `frexp`、`modf` 的双元素分解结果、17 个双过滤器参数函数与三参数 `fma`。覆盖有限样本、整数 C 参数转换、零/定义域/负零、每个参数位置的非数字错误、生成器顺序，以及每个双/三参数函数 100 组固定种子差分。参照固定 jq 1.8.2 手册和 `src/libm.h`；本机 `/usr/bin/jq` 报告 1.8.2，构建来源未核实。其他平台、数学库符号可用性、极端精度及完整兼容性仍未验证。

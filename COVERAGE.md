@@ -166,3 +166,11 @@
 - Four new black-box methods passed: finite reference comparisons, non-number failures for every function, domain/singularity/overflow and signed-zero cases, and 100 fixed-seed values per added function. Reference `/usr/bin/jq` reports 1.8.2; build provenance is unverified. Gamma-family calculations may differ by a few floating-point units.
 - Full `test_jq_*.py` regression passed: 117 tests in 86.261 seconds. Reconstruction commit: [`jq-source b7c3b67`](https://github.com/recipkg/jq-source/tree/b7c3b67f5b57631c5adbcd5e288ad4588483a988); verification commit: [`standard-library-verification 89d925f`](https://github.com/recipkg/standard-library-verification/tree/89d925fab7603516a93993817e2963e03b36461f).
 - Two- and three-argument math functions, platform libm variation, extreme precision and full jq compatibility remain unverified.
+
+## Multi-argument math iteration: 2026-10-30
+
+- Input: recipe v0.1.49, fixed to upstream jq 1.8.2. Source signatures were checked against the versioned manual and upstream `src/libm.h` / `src/builtin.c`.
+- Scope: 17 two-filter-argument C math functions and three-argument `fma`, plus the unary `frexp` and `modf` filters that return their C out-parameters in a two-element array. Integer C parameters in `jn`, `yn`, `ldexp`, and `scalbln` follow C conversion behavior.
+- Six new black-box methods passed against `/usr/bin/jq`: decomposition outputs, finite samples for all functions, domain/zero/signed-zero boundaries, non-number failures in every argument position, jq generator ordering, and 100 fixed-seed comparisons for each of 18 two/three-argument functions. The focused `test_jq_math*.py` run passed all 10 tests in 20.458 seconds. Reconstruction: [`jq-source 048c762`](https://github.com/recipkg/jq-source/tree/048c76260d5eb373f23cd8ccba54a5c9ac075cdb); verification: [`standard-library-verification 25465a0`](https://github.com/recipkg/standard-library-verification/tree/25465a00d0215822170d4257e6466acac9d5a132). The reference reports 1.8.2; build provenance is unverified.
+- Full `test_jq_*.py` regression through the exact workspace pins and packaged Recipkg checks are pending.
+- Platform library differences, unavailable C symbols, extreme precision, exact diagnostics and full jq compatibility remain unverified.
