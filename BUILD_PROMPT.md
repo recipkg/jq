@@ -38,7 +38,7 @@
 
 按 `REGEX-OBSERVED.md` 实现 `test(regex)` 与 `test(regex; flags)`，以 Oniguruma 的 Perl NG 语法处理 Unicode 正则。支持 jq 手册列出的 `g/i/m/n/p/s/l/x` 标志；`g` 对布尔测试无额外影响。单参数还接受字符串或数组简写，数组按前两项取正则和标志；保留正则及标志生成器的输出顺序。当前运行时通过系统 Oniguruma 库提供正则引擎；库不可用时清晰报错。不要据此宣称 `match`、`capture`、`scan`、正则 `split` 或替换过滤器已经实现。
 
-按 `MATCH-OBSERVED.md` 实现 `match(regex)` 与 `match(regex; flags)`：无 `g` 时输出首个匹配对象，有 `g` 时按顺序输出全部非重叠匹配。对象包含 `offset`、`length`、`string`、`captures`；偏移和长度按 jq 观察到的 UTF-8 码点计数。每个捕获项包含 `offset`、`length`、`string`、`name`；未匹配捕获的偏移为 -1、长度为 0、字符串为 null，未命名组的名称为 null。单参数接受字符串或数组简写。零宽全局匹配按观察到的 jq 行为推进一个字节，包含多字节文本时可能产生重复的码点偏移。保留模式/标志生成器顺序，并对照记录中的显式错误。独立 `capture`、`scan`、正则切分和替换仍不在当前合同内。
+按 `MATCH-OBSERVED.md` 实现 `match(regex)` 与 `match(regex; flags)`：无 `g` 时输出首个匹配对象，有 `g` 时按顺序输出全部非重叠匹配。对象包含 `offset`、`length`、`string`、`captures`；偏移和长度按 jq 观察到的 UTF-8 码点计数。每个捕获项包含 `offset`、`length`、`string`、`name`；未匹配捕获的偏移为 -1、长度为 0、字符串为 null，未命名组的名称为 null。单参数接受字符串或数组简写。零宽全局匹配按观察到的 jq 行为推进一个字节，包含多字节文本时可能产生重复的码点偏移。保留模式/标志生成器顺序，并对照记录中的显式错误。再按 `CAPTURE-SCAN-OBSERVED.md` 实现 `capture(regex)`、`capture(regex; flags)`、`scan(regex)` 与 `scan(regex; flags)`：`capture` 返回命名捕获对象，只保留命名组，未参与匹配的命名组值为 null；`g` 允许依次输出多个对象，单参数支持字符串或 `[regex, flags]` 简写。`scan` 总是全局扫描，无捕获组时输出完整匹配字符串，有捕获组时按组顺序输出字符串/null 数组；其单参数不接受数组简写；两参数 flags 可为字符串或 null，其他非字符串值按观测报错。保留参数生成顺序，并按观测文档验收输入、正则和标志错误。正则切分和替换仍不在当前合同内。
 
 ## 类型与 JSON 转换
 

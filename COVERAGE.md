@@ -193,3 +193,9 @@
 
 - 新增 `match(regex)` 与 `match(regex; flags)`：首个/全局匹配对象、捕获元数据、Unicode 偏移、零宽全局字节推进和生成器错误边界见 [`MATCH-OBSERVED.md`](MATCH-OBSERVED.md)。
 - 对应独立重建实现 [`jq-source 22a667e`](https://github.com/recipkg/jq-source/tree/22a667e58dd42fd1f160092edfe5575c524b0871)，黑盒用例 [`standard-library-verification ac7ea55`](https://github.com/recipkg/standard-library-verification/tree/ac7ea559fce672a64611d052d23b0c4f3ca19d3c)。5 项聚焦测试（含 100 组固定种子差分）通过。完整 `test_jq_*.py` 工作区回归通过 137 项（234.289 秒），工作区提交 [`jq-workspace 0abca2d`](https://github.com/recipkg/jq-workspace/tree/0abca2d50a2bd46c4d4f88f9e22fa26d7801facb) 固定源码 `22a667e` 与本配方 `5d9cbd4`。参考 `/usr/bin/jq` 报告 1.8.2，构建来源未核实。
+
+## 正则捕获迭代：2026-10-30
+
+- 新增 `capture(regex)`、`capture(regex; flags)`、`scan(regex)` 与 `scan(regex; flags)` 的有限合同。`capture` 只返回命名捕获对象；`scan` 总是全局输出，无捕获组时给完整匹配字符串，有组时给字符串/null 数组；显式 null flags 等同于未追加标志。
+- 观测记录见 [`CAPTURE-SCAN-OBSERVED.md`](CAPTURE-SCAN-OBSERVED.md)，固定上游 jq 1.8.2 的包装函数源见 [`src/builtin.jq`](https://github.com/jqlang/jq/blob/34f7186b86743a083a589741b6cea95293524108/src/builtin.jq)。独立实现 [`jq-source d74c061`](https://github.com/recipkg/jq-source/tree/d74c06189c7c8c9634ce6d89065c350e47690d13)；verification [`ea2117e`](https://github.com/recipkg/standard-library-verification/tree/ea2117e) 下完整 `test_jq_*.py` 回归 142 项通过（180.509 秒），之后 [`a57a953`](https://github.com/recipkg/standard-library-verification/tree/a57a95377baf5a1d958064e245ff9acc6ed7de4e) 的 5 项聚焦测试补验了 null flags 并全部通过。
+- 正则切分、替换函数、宿主 Oniguruma 以外的平台和完整 jq 兼容性仍未覆盖。
