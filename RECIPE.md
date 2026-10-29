@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.34"
+version = "0.1.35"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -47,3 +47,6 @@ UTF-8 字节计数与 `explode`/`implode` 转换的有限 Unicode 样本见 [`UN
 
 
 路径数组读取的有限合同见 [`GETPATH-OBSERVED.md`](GETPATH-OBSERVED.md)：覆盖对象键、数组索引、缺失值与部分错误边界。写路径的完整行为仍未提取。
+
+
+`setpath(PATHS; VALUE)` 的有限写入合同见 [`SETPATH-OBSERVED.md`](SETPATH-OBSERVED.md)：涵盖路径自动建容器、扩展数组、负下标与无效组合。极端索引和资源上限仍待核查。
