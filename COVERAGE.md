@@ -131,3 +131,12 @@
 - 重建提交为 [`jq-source a0d1bd3`](https://github.com/recipkg/jq-source/tree/a0d1bd3da8778a97837ad937d594e59497182e8a)，黑盒验证为 [`standard-library-verification 57ac488`](https://github.com/recipkg/standard-library-verification/tree/57ac488664dad9d55a4aff8b1500e966af4a88c0)。
 - 主 jq 合同 19 项、定向 jq 测试 103 项全量通过；本轮 4 项 `recurse` 测试通过，默认遍历差分覆盖 100 个固定种子 JSON。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。
 - 无限生成、递归资源、多个条件结果的全部组合、精确错误、平台和完整兼容性仍未确认。
+
+
+## 本轮更新：流截取与跳过（配方 v0.1.45）
+
+- 增加有限 `limit(n; expr)` 与 `skip(n; expr)` 合同：按顺序截取/跳过生成器输出，保留零值、空计数流、多计数值及小数实测边界；`limit` 可以截取无限流。详见 [`LIMIT-SKIP-OBSERVED.md`](LIMIT-SKIP-OBSERVED.md)。
+- 独立重建本轮增加这两个生成器内建函数；黑盒样本位于 `standard-library-verification/tests/test_jq_limit_skip.py`，包含负数/已测非法类型失败，以及 100 组固定种子数组与计数的参考差分。
+- 本轮 4 项定向测试通过；随后完整 jq 回归 107 项全量通过（70.859 秒）。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。
+- 重建提交为 [`jq-source 9cb71e9`](https://github.com/recipkg/jq-source/tree/9cb71e9227ab8ca998e3230281b9ff50e9d14d70)，验证提交为 [`standard-library-verification 13f0198`](https://github.com/recipkg/standard-library-verification/tree/13f01983f7b2c3009b9b14e13256cdf466cfde0c)。
+- 精确诊断和错误时序、复杂多值交错、大数与极端数值、递归资源、平台和完整 jq 兼容性仍未确认。
