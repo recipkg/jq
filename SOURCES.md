@@ -46,3 +46,5 @@
 
 - `getpath(PATHS)` 多路径输出示例依据固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)第 661–672 行；逗号生成器的行为已在参考 jq 和独立重建程序中核对。见 [`GETPATH-OBSERVED.md`](GETPATH-OBSERVED.md) 与验收用例 32。
 - 独立重建代码基线仍为 [`jq-source 206c30f`](https://github.com/recipkg/jq-source/tree/206c30f08bb926ffe606e4221f2f1c0d21fc5893)；验证提交 [`standard-library-verification 0072dfc`](https://github.com/recipkg/standard-library-verification/tree/0072dfc5526b4831e4dc15382b23d44bcbdb1710) 新增多路径生成器黑盒用例。文档状态更新提交 [`jq-source 130d0cd`](https://github.com/recipkg/jq-source/tree/130d0cd4aa5f2bf50567939549abb4be44e32fa1)。94 项定向测试全量通过。
+- `setpath(PATHS; VALUE)` 的多路径生成行为依据 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)第 673–687 行，并以本机参考 jq 和候选重建对照；结果由原输入独立更新。见 [`SETPATH-OBSERVED.md`](SETPATH-OBSERVED.md) 与验收用例 33。
+- 重建代码基线 [`jq-source 206c30f`](https://github.com/recipkg/jq-source/tree/206c30f08bb926ffe606e4221f2f1c0d21fc5893) 未改变；验证提交 [`standard-library-verification 8fa4c5f`](https://github.com/recipkg/standard-library-verification/tree/8fa4c5f3dff3c89ad530557586e4106f6f3e5100) 补充该样本，状态文档提交 [`jq-source 40b9010`](https://github.com/recipkg/jq-source/tree/40b901064e53f55c7fb173bde03ccf3a4e969671)。95 项定向测试全量通过。

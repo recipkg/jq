@@ -107,3 +107,11 @@
 - 独立重建代码未变（基线提交 `206c30f`）；重建仓库文档更新提交为 [`130d0cd`](https://github.com/recipkg/jq-source/tree/130d0cd4aa5f2bf50567939549abb4be44e32fa1)，验证提交为 [`0072dfc`](https://github.com/recipkg/standard-library-verification/tree/0072dfc5526b4831e4dc15382b23d44bcbdb1710)。本轮只补充已有行为的验证和配方记录。
 - 主 jq 合同 19 项、定向 jq 测试 94 项全量通过；本轮 4 项 `getpath` 测试通过，含 100 组固定种子对象/数组路径差分。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。
 - 逗号生成路径之外的所有生成器组合、精确错误时序、极端索引、资源边界、平台和完整 jq 兼容性仍未确认。
+
+
+## 本轮更新：多路径写入（配方 v0.1.42）
+
+- 补充 `setpath(PATHS; VALUE)` 对逗号生成多路径的有限合同：每条路径都基于原输入单独更新，并按产生顺序输出，不累积前一条路径的修改。
+- 重建代码基线仍为 [`jq-source 206c30f`](https://github.com/recipkg/jq-source/tree/206c30f08bb926ffe606e4221f2f1c0d21fc5893)；状态文档更新为 [`40b9010`](https://github.com/recipkg/jq-source/tree/40b901064e53f55c7fb173bde03ccf3a4e969671)，黑盒验证为 [`8fa4c5f`](https://github.com/recipkg/standard-library-verification/tree/8fa4c5f3dff3c89ad530557586e4106f6f3e5100)。
+- 主 jq 合同 19 项、定向 jq 测试 95 项全量通过；本轮 4 项 `setpath` 测试通过，含 100 组固定种子对象/数组更新差分。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。
+- 其他路径/值生成器组合、极端索引和资源边界、平台及完整 jq 兼容性仍未确认。

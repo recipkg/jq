@@ -55,3 +55,5 @@
 31. 按 `PICK-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_pick.py` 验收 `pick(path_expressions)` 对象/数组投影、缺失字段填 null、稀疏数组填充、重复与重叠路径、迭代器、根路径和空迭代器；比较 100 组固定种子嵌套值。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；负数组索引、切片、复杂路径及资源边界未验证。
 
 32. 按 `GETPATH-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_getpath.py` 验收 `getpath(PATHS)` 从单一路径和逗号生成的多个路径中依次读取值，并覆盖嵌套对象/数组路径、缺失键、越界/负下标、小数索引截断、null 中断及已测非法路径。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；其他生成器组合、精确错误语义及完整 jq 兼容性仍未验证。
+
+33. 按 `SETPATH-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_setpath.py` 验收 `setpath(PATHS; VALUE)` 的逗号生成多路径行为：每条路径独立地基于原输入更新，按路径顺序输出；并保留既有自动建容器、数组扩展、负下标、根替换和非法路径样本。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；其他多值组合、精确错误语义及完整 jq 兼容性仍未验证。
