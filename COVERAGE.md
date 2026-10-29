@@ -182,3 +182,10 @@
 - Implemented the four filters through available host C symbols, while keeping them defined with an explicit unavailable-symbol error on systems that lack a symbol.
 - All 4 new Bessel test methods passed, including zero/domain/type boundaries and 100 fixed-seed differential samples per function. The focused math suite passed all 14 tests in 22.981 seconds against `/usr/bin/jq` reporting 1.8.2; the reference binary build provenance is unverified.
 - The complete `test_jq_*.py` regression passed all 127 tests in 110.443 seconds through `jq-workspace` commit `3e5928f`, pinned to source `898cbecc` and recipe `0.1.50` at `d0cd418`. Reference `/usr/bin/jq` reports 1.8.2; its build provenance is unverified. Recipkg pack/check and English/Simplified Chinese build/discover passed; both build prompts contain the recursive quality recipe and build prompt, and two independent archives were byte-identical. Other platforms, extreme precision, exact diagnostics and full jq compatibility remain unverified.
+
+
+## Regex test iteration: 2026-10-30
+
+- Input: jq recipe draft v0.1.51, fixed to jq 1.8.2. The versioned manual specifies Oniguruma Perl NG syntax, the `test` filter, array shorthand, and flags `g/i/m/n/p/s/l/x`.
+- Implemented `test(regex)` and `test(regex; flags)` using the system Oniguruma library through `ctypes`; invalid patterns, flags, unavailable library and invalid argument types fail explicitly. Related regex builtins remain outside scope.
+- Five focused black-box methods passed against local `/usr/bin/jq` reporting 1.8.2, including 100 fixed-seed differential cases. Reconstruction commit: [`jq-source e99a6c8`](https://github.com/recipkg/jq-source/tree/e99a6c8); verification commit: [`standard-library-verification 50754eb`](https://github.com/recipkg/standard-library-verification/tree/50754eb). The full suite through a pinned workspace and package checks are pending. The reference binary build provenance and non-Linux Oniguruma behavior are unverified.

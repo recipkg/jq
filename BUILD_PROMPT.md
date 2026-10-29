@@ -36,6 +36,8 @@
 
 按 `STRING-FILTERS-OBSERVED.md` 实现有限样本中的 `startswith`、`endswith`、`ltrimstr`、`rtrimstr`、`trimstr`、`ascii_downcase`、`ascii_upcase`、单参数字面分隔符 `split` 和 `join`。前缀/后缀与大小写过滤器按 jq 的字符串语义处理；`ascii_*` 只转换 ASCII 字母。空输入字符串的 `split` 返回空数组，空分隔符按 Unicode 码点切分。`join` 接受数组或对象值，null 转为空串，数字和布尔值转为文本；数组或对象成员不支持。对照验收文件中的错误和多输入样本。两参数正则切分、Unicode 大小写转换、空白 trim 过滤器、完整格式与所有类型组合仍未覆盖。
 
+按 `REGEX-OBSERVED.md` 实现 `test(regex)` 与 `test(regex; flags)`，以 Oniguruma 的 Perl NG 语法处理 Unicode 正则。支持 jq 手册列出的 `g/i/m/n/p/s/l/x` 标志；`g` 对布尔测试无额外影响。单参数还接受字符串或数组简写，数组按前两项取正则和标志；保留正则及标志生成器的输出顺序。当前运行时通过系统 Oniguruma 库提供正则引擎；库不可用时清晰报错。不要据此宣称 `match`、`capture`、`scan`、正则 `split` 或替换过滤器已经实现。
+
 ## 类型与 JSON 转换
 
 按 `CONVERSION-OBSERVED.md` 实现已测试范围内的 `type`、`tostring`、`tojson` 和 `fromjson`。`type` 应返回六类 JSON 值的 jq 类型名；`tostring` 保持字符串不变、其他值编码为紧凑 JSON；`tojson` 将所有值（包括字符串）编码为紧凑 JSON 文本。`fromjson` 只接受字符串，并对恰好一个 JSON 值产生结果；空文本、无效文本或多个 JSON 文本必须报错。完整解析、数值精度、重复键策略和诊断信息仍待提取，不得将这些样本扩展成全解析器兼容声明。

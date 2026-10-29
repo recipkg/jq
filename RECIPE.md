@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.50"
+version = "0.1.51"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -21,6 +21,8 @@ subdir = "recipes/software-quality"
 模块文件、搜索路径、`include`/`import`、模块元数据及其未验证边界见 [`MODULES-DOCUMENTED.md`](MODULES-DOCUMENTED.md)。`-L` 与 `include` 目前只覆盖文档中标明的有限本机 jq 1.8.2 样本；模块系统整体仍未提取或重建完成，导入、JSON 模块、默认路径和元数据仍是缺口。
 
 字符串过滤器的有限提取和重建样本见 [`STRING-FILTERS-OBSERVED.md`](STRING-FILTERS-OBSERVED.md)。配方仍未覆盖 jq 完整字符串 API。
+
+`test(regex)` 与 `test(regex; flags)` 的有限正则合同见 [`REGEX-OBSERVED.md`](REGEX-OBSERVED.md)：使用 Oniguruma Perl NG 语法，覆盖手册列出的匹配标志、单参数字符串/数组简写、生成器顺序和显式错误。仅实现 `test`，`match`、`capture`、`scan`、正则切分及替换函数仍未覆盖。
 
 类型检查和 JSON 文本转换的有限样本见 [`CONVERSION-OBSERVED.md`](CONVERSION-OBSERVED.md)。完整 JSON 解析语义仍未覆盖。
 

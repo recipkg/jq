@@ -15,6 +15,8 @@
 
 验证脚本 `standard-library-verification/tests/test_jq_strings.py` 的 5 个方法覆盖以上显式样本，并以固定随机种子对 120 个含 Unicode 的字符串、100 个混合数组和 100 个对象执行差分。针对空字符串 `split(",")` 的一处差异曾由参考端发现并修正：jq 返回 `[]`，Python 默认 `str.split` 会返回 `['']`。
 
+正则搜索的 `test(regex)` 与 `test(regex; flags)` 已单独提取，见 [`REGEX-OBSERVED.md`](REGEX-OBSERVED.md)。正则切分和字符串替换仍属未实现范围。
+
 ## 尚未验证
 
-此范围不包括两参数正则 `split`、`trim`/`ltrim`/`rtrim` 空白字符库、Unicode 大小写转换、任意数值格式、分隔符表达式的所有输出组合、完整错误信息、平台差异或完整 jq 字符串 API。单项通过不代表这些行为已兼容。
+此观察文档本身不包括两参数正则 `split`、`trim`/`ltrim`/`rtrim` 空白字符库、Unicode 大小写转换、任意数值格式、分隔符表达式的所有输出组合、完整错误信息、平台差异或完整 jq 字符串 API。正则 `test` 的有限范围另见 `REGEX-OBSERVED.md`。单项通过不代表这些行为已兼容。
