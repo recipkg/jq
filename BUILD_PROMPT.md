@@ -40,6 +40,10 @@
 
 按 `CONVERSION-OBSERVED.md` 实现已测试范围内的 `type`、`tostring`、`tojson` 和 `fromjson`。`type` 应返回六类 JSON 值的 jq 类型名；`tostring` 保持字符串不变、其他值编码为紧凑 JSON；`tojson` 将所有值（包括字符串）编码为紧凑 JSON 文本。`fromjson` 只接受字符串，并对恰好一个 JSON 值产生结果；空文本、无效文本或多个 JSON 文本必须报错。完整解析、数值精度、重复键策略和诊断信息仍待提取，不得将这些样本扩展成全解析器兼容声明。
 
+## 容器包含与数组反转
+
+按 `CONTAINMENT-OBSERVED.md` 实现 `contains`、`inside` 和数组 `reverse` 的有限行为。字符串按子串包含；数组中的每个目标元素需在容器某一元素中递归匹配；对象按键和值递归包含。标量和不同类型的错误/假值处理需遵从验收样本，尤其不要把顶层类型错配与容器内部元素错配合并处理。`reverse` 仅声明支持数组。复杂混合类型、完整递归边界和性能仍待提取。
+
 ## 模块和库搜索
 
 按 `MODULES-DOCUMENTED.md` 的阶段记录实现模块功能。第一阶段必须支持重复的 `-L directory`、在搜索目录中查找 `path.jq` 与 `path/path.jq`、`include "path";`、递归 include、首个搜索目录优先，以及样本显示的候选顺序；缺失模块应明确编译失败。只对已经运行对照的本机 jq 1.8.2 样本作兼容声明，并保留其二进制构建来源未核实这一限制。暂不支持的 `import`、JSON 模块、默认路径、`module` 元数据和 `modulemeta` 必须继续列为缺口，不能静默忽略或宣称兼容。jq 模块属于目标软件的运行时能力，不是 Recipkg 配方依赖。
