@@ -199,3 +199,9 @@
 - 新增 `capture(regex)`、`capture(regex; flags)`、`scan(regex)` 与 `scan(regex; flags)` 的有限合同。`capture` 只返回命名捕获对象；`scan` 总是全局输出，无捕获组时给完整匹配字符串，有组时给字符串/null 数组；显式 null flags 等同于未追加标志。
 - 观测记录见 [`CAPTURE-SCAN-OBSERVED.md`](CAPTURE-SCAN-OBSERVED.md)，固定上游 jq 1.8.2 的包装函数源见 [`src/builtin.jq`](https://github.com/jqlang/jq/blob/34f7186b86743a083a589741b6cea95293524108/src/builtin.jq)。独立实现 [`jq-source d74c061`](https://github.com/recipkg/jq-source/tree/d74c06189c7c8c9634ce6d89065c350e47690d13)；verification [`ea2117e`](https://github.com/recipkg/standard-library-verification/tree/ea2117e) 下完整 `test_jq_*.py` 回归 142 项通过（180.509 秒），之后 [`a57a953`](https://github.com/recipkg/standard-library-verification/tree/a57a95377baf5a1d958064e245ff9acc6ed7de4e) 的 5 项聚焦测试补验了 null flags 并全部通过。
 - 正则切分、替换函数、宿主 Oniguruma 以外的平台和完整 jq 兼容性仍未覆盖。
+
+## 正则切分迭代：2026-10-30
+
+- 加入 `split(regex; flags)` 与 `splits(regex)`/`splits(regex; flags)` 的有限提取，同时保留 `split(str)` 的单参数字面分隔符行为。细节见 [`SPLIT-OBSERVED.md`](SPLIT-OBSERVED.md)；上游包装函数见固定 jq 1.8.2 [`src/builtin.jq`](https://github.com/jqlang/jq/blob/34f7186b86743a083a589741b6cea95293524108/src/builtin.jq#L845-L858)。
+- 新增 5 项聚焦黑盒测试，含 100 组固定种子差分。完整 jq 回归和 Recipkg 包归档验证待本轮结束后补记。
+- 替换过滤器 `sub`/`gsub`、其他平台和完整 jq 兼容性仍未覆盖。
