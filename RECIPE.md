@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.55"
+version = "0.1.56"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -22,7 +22,7 @@ subdir = "recipes/software-quality"
 
 字符串过滤器的有限提取和重建样本见 [`STRING-FILTERS-OBSERVED.md`](STRING-FILTERS-OBSERVED.md)。配方仍未覆盖 jq 完整字符串 API。
 
-`test(regex)` 与 `test(regex; flags)` 的有限合同见 [`REGEX-OBSERVED.md`](REGEX-OBSERVED.md)；`match(regex)` 与 `match(regex; flags)` 的结果对象、捕获组、Unicode 偏移、全局及零宽匹配见 [`MATCH-OBSERVED.md`](MATCH-OBSERVED.md)。本轮补充独立 `capture(regex)` 与 `scan(regex)` 的命名捕获、全局输出、数组结果和参数边界，详见 [`CAPTURE-SCAN-OBSERVED.md`](CAPTURE-SCAN-OBSERVED.md)；正则 `split(regex; flags)` 与流式 `splits(regex; flags)` 的有限合同见 [`SPLIT-OBSERVED.md`](SPLIT-OBSERVED.md)。正则过滤器均使用 Oniguruma Perl NG 语法。`sub`/`gsub` 替换函数仍未覆盖。
+`test(regex)` 与 `test(regex; flags)` 的有限合同见 [`REGEX-OBSERVED.md`](REGEX-OBSERVED.md)；`match(regex)` 与 `match(regex; flags)` 的结果对象、捕获组、Unicode 偏移、全局及零宽匹配见 [`MATCH-OBSERVED.md`](MATCH-OBSERVED.md)。本轮补充独立 `capture(regex)` 与 `scan(regex)` 的命名捕获、全局输出、数组结果和参数边界，详见 [`CAPTURE-SCAN-OBSERVED.md`](CAPTURE-SCAN-OBSERVED.md)；正则 `split(regex; flags)` 与流式 `splits(regex; flags)` 的有限合同见 [`SPLIT-OBSERVED.md`](SPLIT-OBSERVED.md)。正则过滤器均使用 Oniguruma Perl NG 语法；`sub`、`gsub` 与替换字符串内的有限插值合同见 [SUB-GSUB-OBSERVED.md](SUB-GSUB-OBSERVED.md)。通用字符串插值和完整正则兼容性仍未覆盖。
 
 类型检查和 JSON 文本转换的有限样本见 [`CONVERSION-OBSERVED.md`](CONVERSION-OBSERVED.md)。完整 JSON 解析语义仍未覆盖。
 

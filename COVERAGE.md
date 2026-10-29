@@ -205,3 +205,9 @@
 - 加入 `split(regex; flags)` 与 `splits(regex)`/`splits(regex; flags)` 的有限提取，同时保留 `split(str)` 的单参数字面分隔符行为。细节见 [`SPLIT-OBSERVED.md`](SPLIT-OBSERVED.md)；上游包装函数见固定 jq 1.8.2 [`src/builtin.jq`](https://github.com/jqlang/jq/blob/34f7186b86743a083a589741b6cea95293524108/src/builtin.jq#L845-L858)。
 - 新增 5 项聚焦黑盒测试，含 100 组固定种子差分。完整 `test_jq_*.py` 回归在 [jq-workspace 0be11ff](https://github.com/recipkg/jq-workspace/tree/0be11ff2b73dd4f429e8bb52d4371ab8a29d2ec8) 通过 147 项（286.480 秒），固定源码 [jq-source a47cf08](https://github.com/recipkg/jq-source/tree/a47cf08459df80986425949aebd82484917a8122)、配方 `jq@0.1.54` 与 verification [7155117](https://github.com/recipkg/standard-library-verification/tree/7155117cbb8874322bc048b95cf266fff88b5100)；参考端报告 jq 1.8.2，构建来源未核实。
 - 对 `jq@0.1.54` 执行 Recipkg 检查并验证打包：47 个 Markdown 文件共 202,427 字节；两次归档 SHA-256 均为 `3f86a96f845fc572202c5c6d785523a0b29681d44da1372bf5e281ad8e6cad5e`。英中 build/discover 都保留了 quality 递归依赖与切分合同；本次验收没有改写配方源文件。`sub`/`gsub`、其他平台和完整 jq 兼容性仍未覆盖。
+
+
+## 正则替换覆盖
+
+- 按固定 jq 1.8 手册和上游 `src/builtin.jq` 增加有限 `sub` / `gsub` 及替换字符串插值合同，覆盖首个/全局行为、命名捕获上下文、替换输出流位置合并、flags、空匹配、错误和固定种子差分；详见 [SUB-GSUB-OBSERVED.md](SUB-GSUB-OBSERVED.md)。
+- 新增 `test_jq_regex_replace.py` 的 8 个聚焦方法通过。完整回归及 jq@0.1.56 最终打包/双语构建验收将在源码、验证与配方提交固定后记录。
