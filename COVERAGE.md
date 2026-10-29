@@ -92,3 +92,10 @@
 - 增加 `del(path_expression)` 的有限删除合同：[`DELPATH-OBSERVED.md`](DELPATH-OBSERVED.md)。覆盖对象/数组路径、多个下标、迭代路径、未命中、重叠路径、负/越界下标和根路径；目标路径按一次性删除处理。
 - 独立重建提交：[jq-source `d2356495aa8991287fc9e5e97343e4679bcb709b`](https://github.com/recipkg/jq-source/tree/d2356495aa8991287fc9e5e97343e4679bcb709b)；黑盒验证提交：[standard-library-verification `e629c9a`](https://github.com/recipkg/standard-library-verification/tree/e629c9ad06c5e85b9b5ba9f4503a84612120f80f)。89 项定向测试全量通过；本轮 4 项 `del` 测试再次通过，含 100 组固定种子嵌套值差分。
 - 参考端 `/usr/bin/jq` 报告 1.8.2，构建来源未核实。复杂路径表达式、完整错误语义、资源边界、平台和完整 jq 兼容性仍未确认。
+
+
+## 本轮更新：路径投影（配方 v0.1.40）
+
+- 增加 `pick(path_expressions)` 的稀疏投影合同：[`PICK-OBSERVED.md`](PICK-OBSERVED.md)。对象缺失字段与数组空位填 null；验收包含嵌套、重复/重叠路径、迭代器、空迭代和根路径。
+- 独立重建提交：[jq-source `206c30f08bb926ffe606e4221f2f1c0d21fc5893`](https://github.com/recipkg/jq-source/tree/206c30f08bb926ffe606e4221f2f1c0d21fc5893)；黑盒验证提交：[standard-library-verification `41af720`](https://github.com/recipkg/standard-library-verification/tree/41af7208bd1460ebcb7eaa00d9aee7c1a58cf55b)。93 项定向测试全量通过；本轮 4 项 `pick` 测试通过，含 100 组固定种子嵌套值差分。
+- 参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实。负数组索引、切片、复杂路径、完整错误行为、资源边界、平台和整体兼容性仍未确认。

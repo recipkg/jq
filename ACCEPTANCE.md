@@ -51,3 +51,5 @@
 29. 按 `SQL-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_sql_operators.py` 验收大写 `INDEX`、`JOIN` 两/三/四参数形式和大写 `IN` 单/双流成员判断；覆盖重复与多值索引键、null/布尔/数字/数组/对象键、缺失联结、合并表达式及空流，并比较 100 组固定种子索引联结。参考端 `/usr/bin/jq` 报告 1.8.2，构建来源未核实；更广泛的流时序、错误和资源行为未在本项验证。
 
 30. 按 `DELPATH-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_del.py` 验收 `del(path_expression)` 的对象/数组字段删除、同时多下标、对象和数组迭代、负/越界下标、缺失字段、重叠路径与根删除；比较 100 组固定种子嵌套值。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；复杂路径、错误时序和资源边界仍未确认。
+
+31. 按 `PICK-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_pick.py` 验收 `pick(path_expressions)` 对象/数组投影、缺失字段填 null、稀疏数组填充、重复与重叠路径、迭代器、根路径和空迭代器；比较 100 组固定种子嵌套值。参考端 `/usr/bin/jq` 报告 jq 1.8.2，构建来源未核实；负数组索引、切片、复杂路径及资源边界未验证。

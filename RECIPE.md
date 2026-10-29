@@ -5,7 +5,7 @@ format = "recipkg/1"
 
 [package]
 name = "jq"
-version = "0.1.39"
+version = "0.1.40"
 kind = "software"
 description = "命令行 JSON 查询与转换工具 jq 的重建配方草案。"
 entry = "BUILD_PROMPT.md"
@@ -59,3 +59,5 @@ UTF-8 字节计数与 `explode`/`implode` 转换的有限 Unicode 样本见 [`UN
 SQL 风格流操作的有限行为见 [`SQL-OBSERVED.md`](SQL-OBSERVED.md)：包括大写 `INDEX`、三种 `JOIN` 形式与大写 `IN` 的流成员判断。多结果顺序、错误时序和资源边界仍未完整提取。
 
 路径表达式删除的有限行为见 [`DELPATH-OBSERVED.md`](DELPATH-OBSERVED.md)：`del(path_expression)` 覆盖对象字段、数组下标、有限多值选择器与迭代器。复杂表达式与完整错误边界仍待提取。
+
+路径投影的有限行为见 [`PICK-OBSERVED.md`](PICK-OBSERVED.md)：`pick(path_expressions)` 复制所选对象/数组路径并以 null 补缺失字段和稀疏数组位置。负数组索引、切片和复杂路径仍未纳入。
