@@ -9,6 +9,7 @@
 - 对照手册和本机二进制验证部分条件、回退、布尔短路和比较样本，见 `CONDITIONALS-OBSERVED.md` 和验收用例 8；排序的未测试边界仅来自手册，未验证所有复杂表达式。
 - 在本机补充验证嵌套布尔值和数字的相等性、`elif` 与短路空结果；具体样本见 `CONDITIONALS-OBSERVED.md`。
 - 本机 decnum 构建对照部分 JSON 字节、重复键、宽松数字、Unicode、错误恢复和大数字算术，见 `JSON-PARSING-OBSERVED.md` 和验收用例 9；其他构建与完整解析语义尚未验证。
+- 参考 1.8 手册并用本机 jq 验证部分 `map`、`map_values`、键查询、数组下标和错误传播；详细条件见 `COLLECTIONS-OBSERVED.md`，未验证全部内建函数。
 - 依赖候选核查：标准库尚无 JSON 解析器配方。上游 [jsmn](https://github.com/zserge/jsmn/tree/25647e692c7906b96ffd2b05ca54c097948e879c) 提供基于输入偏移的 token，而 jq 还需值解码、数字语义、错误和流式记录；未验证两者完整接口兼容，因此没有将其当作现成依赖。
 - 对照手册与本机样本补充绑定、函数和归约，见 `PROGRAMMING-OBSERVED.md` 和验收用例 10；复杂作用域、多值组合和完整函数库仍未知。
 - 独立重建已开始：[jq-source](https://github.com/recipkg/jq-source) 提交 `9b2f7388a60c55a236598526b0833ef2e3405fa8` 基于本配方 v0.1.6 和递归质量依赖；12 组 jq 样本中 4 组通过，8 组存在失败，共 48 个失败断言或子用例。详见源码的状态记录；配方和实现都未完成，不能声称兼容。大部分语言和函数、流式、模块、库 API、边缘情况与平台尚未完整提取或测试。
