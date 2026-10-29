@@ -16,3 +16,6 @@
 
 - `range` 的参数形式、边界与步长方向依据固定版本的 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)；升降序、小数和零步长样本以及未验证项见 [`RANGE-OBSERVED.md`](RANGE-OBSERVED.md) 与验收用例 22。
 - 独立重建本轮更新至 [jq-source `39fa30b`](https://github.com/recipkg/jq-source/tree/39fa30b)；实现 `range` 的有限数值序列。源码状态记录了 19 项主验收与 59 项定向样本均通过，参考二进制构建来源仍未核实。
+
+- `to_entries`、`from_entries`、`with_entries` 的定义与字段别名参考固定版本 [jq 1.8 手册](https://jqlang.org/manual/v1.8/)；本机对照和差分边界见 [`ENTRIES-OBSERVED.md`](ENTRIES-OBSERVED.md) 与验收用例 23。
+- 本轮独立重建位于 [jq-source `25c42f93510d8272ce44a1efa067e7c4e98e58c4`](https://github.com/recipkg/jq-source/tree/25c42f93510d8272ce44a1efa067e7c4e98e58c4)，验证样本位于 [standard-library-verification `eeb7e48`](https://github.com/recipkg/standard-library-verification/tree/eeb7e48ff35c6706f063bb6130558f5cddf9b9d6)。19 项主 jq 合同与 63 项定向样本通过；参考二进制构建来源未核实。

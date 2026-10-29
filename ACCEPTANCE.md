@@ -30,3 +30,6 @@
 
 
 22. 按 `RANGE-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_range.py` 验收 `range(stop)`、`range(start; stop)`、`range(start; stop; step)`，覆盖升序、降序、正负和零步长、小数边界、非法类型，以及 100 组固定种子整数范围差分。参考端为本机 `/usr/bin/jq`（报告 jq 1.8.2，构建来源未核实）；有限样本不覆盖多值参数组合、极端精度、完整错误时序或资源边界。
+
+
+23. 按 `ENTRIES-OBSERVED.md` 与 `standard-library-verification/tests/test_jq_entries.py` 验收对象/数组 `to_entries`、`from_entries` 的 `key`/`Key`/`name`/`Name` 和 `value`/`Value` 字段、重复键、缺省值，以及用 `with_entries` 更新或筛选条目。设置本机 `/usr/bin/jq` 参考端比较 100 个对象和 100 个数组；参考二进制报告 jq 1.8.2，但构建来源未核实。该有限样本不涵盖所有输入类型、错误时序或完整过滤器兼容性。

@@ -31,3 +31,11 @@
 - 独立重建提交：[jq-source `39fa30b`](https://github.com/recipkg/jq-source/tree/39fa30b)；黑盒验证提交：[standard-library-verification `2b84e93`](https://github.com/recipkg/standard-library-verification/tree/2b84e93df81359eb7a2dceda934cb57f018eee16)。
 - 主 jq 合同 19 项、定向 jq 测试 59 项通过；本轮 3 项范围测试通过，含 100 组固定种子整数范围差分。参考端 `/usr/bin/jq` 报告 1.8.2，但构建来源未核实。
 - 参数生成多个值时的组合与错误时序、极端数值、完整 jq 兼容性仍未验证；这项进展不表示整个配方或重建已完成。
+
+
+## 本轮更新：对象条目转换（配方 v0.1.32）
+
+- 增加 `to_entries`、`from_entries`、`with_entries` 的有限合同：[`ENTRIES-OBSERVED.md`](ENTRIES-OBSERVED.md)。
+- 独立重建提交：[jq-source `25c42f93510d8272ce44a1efa067e7c4e98e58c4`](https://github.com/recipkg/jq-source/tree/25c42f93510d8272ce44a1efa067e7c4e98e58c4)；黑盒样本提交：[standard-library-verification `eeb7e48`](https://github.com/recipkg/standard-library-verification/tree/eeb7e48ff35c6706f063bb6130558f5cddf9b9d6)。
+- 主 jq 合同 19 项、定向 jq 测试 63 项通过；本轮 4 项转换测试通过，差分覆盖 100 个对象和 100 个数组。参考端 `/usr/bin/jq` 报告 1.8.2，但构建来源未核实。
+- 全部类型/键边界、错误时序、其他平台与完整 jq 兼容性仍未验证；整个配方及重建仍在提取中。
