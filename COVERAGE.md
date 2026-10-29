@@ -78,3 +78,10 @@
 - 增加 `delpaths(PATHS)` 同时删除对象键与数组元素的有限合同：[`DELPATHS-OBSERVED.md`](DELPATHS-OBSERVED.md)。数组删除按原始索引处理；本轮样本包括重复/嵌套/重叠路径、缺失键、越界/负/小数索引、空根路径和非法组合。
 - 独立重建提交：[jq-source `d7b6cf01b136f30f93cf2d7ae8233308cdbbcc9f`](https://github.com/recipkg/jq-source/tree/d7b6cf01b136f30f93cf2d7ae8233308cdbbcc9f)；黑盒验证提交：[standard-library-verification `c19b3b8`](https://github.com/recipkg/standard-library-verification/tree/c19b3b8794236e297c298cedd5d7099d4447380a)。19 项主合同与 80 项定向测试全量通过；更新小数下标边界后，本轮 4 项 delpaths 测试再次通过，含 100 组固定种子嵌套值对照。
 - 参考端 `/usr/bin/jq` 报告 1.8.2，构建来源未核实。精确错误语义、极端索引和资源边界、平台及完整 jq 兼容性仍未确认。
+
+
+## 本轮更新：SQL 风格流操作（配方 v0.1.38）
+
+- 增加大写 `INDEX`、`JOIN` 两/三/四参数形式及大写 `IN` 单/双流判断的有限合同：[`SQL-OBSERVED.md`](SQL-OBSERVED.md)。覆盖重复和多值索引键、复合键转字符串、联结未命中、两侧合并，以及固定种子索引联结。
+- 独立重建提交：[jq-source `d4f116a7b9af6b70c1270253c97eca8269c928b9`](https://github.com/recipkg/jq-source/tree/d4f116a7b9af6b70c1270253c97eca8269c928b9)；黑盒验证提交：[standard-library-verification `d1cd01e`](https://github.com/recipkg/standard-library-verification/tree/d1cd01e50edced74232428d5b5740eedae87f558)。85 项定向测试全量通过；本轮 5 项 SQL 操作测试在增加复合键覆盖后再次通过，含 100 组固定种子联结差分。
+- 参考端 `/usr/bin/jq` 报告 1.8.2，构建来源未核实。完整流求值顺序、错误时序、资源边界、平台及 jq 全量兼容性仍未确认。
